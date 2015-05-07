@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+		<title>Snake on YouTube by Eli112358</title>
+		<style>
+			h4 {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+		<div class="container">
+			<h1>Eli112358</h1>
+			<h2>YouTube Snake Game</h2>
+			<section id="downloads">
+				<a href="https://github.com/eli112358" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+			</section>
+		</div>
+		</header>
+		<div class="container">
+			<section id="main_content">
+				<center>
+					<h3>Snake game on any YouTube video</h3>
+					<p><a href="#info">Help text below</a></p>
+					<div>
+					<script type="text/javascript">
+						function setVideo() {
+							var input=document.getElementById("input");
+							var url="https://www.youtube.com/v/"+input.value+"&amp;hl=en_US&amp;fs=1";
+							document.getElementById("embed").setAttribute("src",url);
+							var container=document.getElementById("video");
+							var content=container.innerHTML;
+							container.removeChild(content);
+							container.appendChild(content);
+						}
+					</script>
+					<script type="text/javascript">
+						function useExample1() {
+							var input=document.getElementById("input");
+							input.value="QW54WsjrxPY";
+							setVideo();
+						}
+					</script>
+					<script type="text/javascript">
+						function useExample2() {
+							var input=document.getElementById("input");
+							input.value="xKyGcAiLkDQ";
+							setVideo();
+						}
+					</script>
+					<object id="video" width="420" height="315">
+						<embed id="embed" style="width: 640px; height: 360px;" src="http://www.youtube.com/v/0RzTXFF0OYE&amp;hl=en_US&amp;fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowFullScreen="true" width="640" height="360">
+					</object>
+					<form onsubmit="return false">
+						<input type="text" id="input" name="VideoID" value="0RzTXFF0OYE"></input>
+						<button onClick="setVideo()">Load</button>
+					</form>
+					</div>
+				</center>
+				<p><h4 id="info">How to use</h4>Simply copy and paste the <a href="#getVidId">id of any video</a> into the text box, press the button or hit enter, and the video should change. Click the player to start the video and then hit either up or down and then immediately either left or right; this should start the game. When you die you should be able to just hit up or down to start the game again. I recommend up because while the loading wheel is spinning, the up and down keys control the volume.<p>
+				<p><h4 id="getVidId">How to get video ID</h4>In the address bar, the id is between 'v=' and '&' if any. For example, with a url of <a target="_blank" href="http://www.youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY">youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY</a> the id is <a href="#getVidId" onClick="useExample1()">QW54WsjrxPY</a>. Another example, if the url is <a target="_blank" href="http://www.youtube.com/watch?v=xKyGcAiLkDQ">youtube.com/watch?v=xKyGcAiLkDQ</a> then the id is <a href="#getVidId" onClick="useExample2()">xKyGcAiLkDQ</a>.</p>
+				<p><h4 id="Support">Issues and Suggestions</h4>If you have any issues worth fixing or suggestions, please post them <a target="_blank" href="http://github.com/eli112358/eli112358.github.io/issues">here</a>.</p>
+			</section>
+		</div>
+	</body>
+</html>
