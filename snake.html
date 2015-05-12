@@ -12,6 +12,17 @@
 				text-align: center;
 			}
 		</style>
+		<script src="javascripts/getQueryString.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			function checkURL() {
+				var videoID=getURLParameter('v');
+				if(videoID==null) videoID="0RzTXFF0OYE";
+				var input=document.getElementById("input");
+				input.value=videoID;
+				setVideo();
+			}
+			window.onload=checkURL;
+		</script>
 	</head>
 	<body>
 		<header>
@@ -40,31 +51,17 @@
 							container.appendChild(content);
 						}
 					</script>
-					<script type="text/javascript">
-						function useExample1() {
-							var input=document.getElementById("input");
-							input.value="QW54WsjrxPY";
-							setVideo();
-						}
-					</script>
-					<script type="text/javascript">
-						function useExample2() {
-							var input=document.getElementById("input");
-							input.value="xKyGcAiLkDQ";
-							setVideo();
-						}
-					</script>
 					<object id="video" width="420" height="315">
-						<embed id="embed" style="width: 640px; height: 360px;" src="http://www.youtube.com/v/0RzTXFF0OYE&amp;hl=en_US&amp;fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowFullScreen="true" width="640" height="360">
+						<embed id="embed" style="width: 640px; height: 360px;" type="application/x-shockwave-flash" allowscriptaccess="always" allowFullScreen="true" width="640" height="360">
 					</object>
 					<form onsubmit="return false">
-						<input type="text" id="input" name="VideoID" value="0RzTXFF0OYE"></input>
+						<input type="text" id="input" name="VideoID"></input>
 						<button onClick="setVideo()">Load</button>
 					</form>
 					</div>
 				</center>
-				<p><h4 id="info">How to use</h4>Simply copy and paste the <a href="#getVidId">id of any video</a> into the text box, press the button or hit enter, and the video should change. Click the player to start the video and then hit either left or right and then immediately either up or down; this should start the game. When you die you should be able to just hit up or down to start the game again. I recommend up because while the loading wheel is spinning, the up and down keys control the volume.<p>
-				<p><h4 id="getVidId">How to get video ID</h4>In the address bar, the id is between 'v=' and '&' if any. For example, with a url of <a target="_blank" href="http://www.youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY">youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY</a> the id is <a href="#getVidId" onClick="useExample1()">QW54WsjrxPY</a>. Another example, if the url is <a target="_blank" href="http://www.youtube.com/watch?v=xKyGcAiLkDQ">youtube.com/watch?v=xKyGcAiLkDQ</a> then the id is <a href="#getVidId" onClick="useExample2()">xKyGcAiLkDQ</a>.</p>
+				<p><h4 id="info">How to use</h4>Simply copy and paste the id of any video into the text box, press the button or hit enter, and the video should change. Click the player to start the video and then hit either left or right and then immediately either up or down; this should start the game. When you die you should be able to just hit up or down to start the game again. I recommend up because while the loading wheel is spinning, the up and down keys control the volume.<p>
+				<p><h4 id="getVidId">How to get the video ID</h4>In the address bar, the id is between 'v=' and '&' if any. For example, with a url of <a target="_blank" href="http://www.youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY">youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY</a> the id is <a href="?v=QW54WsjrxPY">QW54WsjrxPY</a>. Another example, if the url is <a target="_blank" href="http://www.youtube.com/watch?v=xKyGcAiLkDQ">youtube.com/watch?v=xKyGcAiLkDQ</a> then the id is <a href="?v=xKyGcAiLkDQ">xKyGcAiLkDQ</a>.</p>
 				<p><h4 id="Support">Issues and Suggestions</h4>If you have any issues worth fixing or suggestions, please post them <a target="_blank" href="http://github.com/eli112358/eli112358.github.io/issues">here</a>.</p>
 			</section>
 		</div>
