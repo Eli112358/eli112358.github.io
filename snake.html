@@ -38,13 +38,18 @@
 			<section id="main_content">
 				<center>
 					<h3>Snake game on any YouTube video</h3>
-					<p><a href="#info">Help text below</a></p>
+					<p>
+						<a href="#info">Help text below</a><br/>
+						<a id="output">Link to here</a>
+					</p>
 					<div>
 					<script type="text/javascript">
 						function setVideo() {
 							var input=document.getElementById("input");
 							var url="https://www.youtube.com/v/"+input.value+"&amp;hl=en_US&amp;fs=1";
 							document.getElementById("embed").setAttribute("src",url);
+							var output=document.getElementById("output");
+							output.setAttribute("href","snake.html?v="+input.value);
 							var container=document.getElementById("video");
 							var content=container.innerHTML;
 							container.removeChild(content);
@@ -55,7 +60,7 @@
 						<embed id="embed" style="width: 640px; height: 360px;" type="application/x-shockwave-flash" allowscriptaccess="always" allowFullScreen="true" width="640" height="360">
 					</object>
 					<form onsubmit="return false">
-						<input type="text" id="input" name="VideoID"></input>
+						<input type="text" id="input" style="width:100px"></input>
 						<button onClick="setVideo()">Load</button>
 					</form>
 					</div>
@@ -63,6 +68,7 @@
 				<p><h4 id="info">How to use</h4>Simply copy and paste the id of any video into the text box, press the button or hit enter, and the video should change. Click the player to start the video and then hit either left or right and then immediately either up or down; this should start the game. When you die you should be able to just hit up or down to start the game again. I recommend up because while the loading wheel is spinning, the up and down keys control the volume.<p>
 				<p><h4 id="getVidId">How to get the video ID</h4>In the address bar, the id is between 'v=' and '&' if any. For example, with a url of <a target="_blank" href="http://www.youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY">youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY</a> the id is <a href="?v=QW54WsjrxPY">QW54WsjrxPY</a>. Another example, if the url is <a target="_blank" href="http://www.youtube.com/watch?v=xKyGcAiLkDQ">youtube.com/watch?v=xKyGcAiLkDQ</a> then the id is <a href="?v=xKyGcAiLkDQ">xKyGcAiLkDQ</a>.</p>
 				<p><h4 id="Support">Issues and Suggestions</h4>If you have any issues worth fixing or suggestions, please post them <a target="_blank" href="http://github.com/eli112358/eli112358.github.io/issues">here</a>.</p>
+				<a href="#">Back to top</a>
 			</section>
 		</div>
 	</body>
