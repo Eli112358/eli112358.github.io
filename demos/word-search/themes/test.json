@@ -1,0 +1,7 @@
+﻿{
+	"theme": "Testing",
+	"difficulty": "none (just testing)",
+	"rows": 5,
+	"collumns": 7,
+	"words": ["some", "testing", "words"]
+}
