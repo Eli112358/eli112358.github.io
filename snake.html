@@ -26,13 +26,13 @@
 	</head>
 	<body>
 		<header>
-		<div class="container">
-			<h1>Eli112358</h1>
-			<h2>YouTube Snake Game</h2>
-			<section id="downloads">
-				<a href="https://github.com/eli112358" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-			</section>
-		</div>
+			<div class="container">
+				<h1>Eli112358</h1>
+				<h2>YouTube Snake Game</h2>
+				<section id="downloads">
+					<a href="https://github.com/eli112358" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+				</section>
+			</div>
 		</header>
 		<div class="container">
 			<section id="main_content">
@@ -43,26 +43,26 @@
 						<a id="output">Link to here</a>
 					</p>
 					<div>
-					<script type="text/javascript">
-						function setVideo() {
-							var input=document.getElementById("input");
-							var url="https://www.youtube.com/v/"+input.value+"&amp;hl=en_US&amp;fs=1";
-							document.getElementById("embed").setAttribute("src",url);
-							var output=document.getElementById("output");
-							output.setAttribute("href","snake.html?v="+input.value);
-							var container=document.getElementById("video");
-							var content=container.innerHTML;
-							container.removeChild(content);
-							container.appendChild(content);
-						}
-					</script>
-					<object id="video" width="420" height="315">
-						<embed id="embed" style="width: 640px; height: 360px;" type="application/x-shockwave-flash" allowscriptaccess="always" allowFullScreen="true" width="640" height="360">
-					</object>
-					<form onsubmit="return false">
-						<input type="text" id="input" style="width:100px"></input>
-						<button onClick="setVideo()">Load</button>
-					</form>
+						<script type="text/javascript">
+							function setVideo() {
+								var input=document.getElementById("input");
+								var url="https://www.youtube.com/v/"+input.value+"&amp;hl=en_US&amp;fs=1";
+								document.getElementById("embed").setAttribute("src",url);
+								var output=document.getElementById("output");
+								output.setAttribute("href","snake.html?v="+input.value);
+								var container=document.getElementById("video");
+								var content=container.innerHTML;
+								container.removeChild(content);
+								container.appendChild(content);
+							}
+						</script>
+						<object id="video" width="420" height="315">
+							<embed id="embed" style="width: 640px; height: 360px;" type="application/x-shockwave-flash" allowscriptaccess="always" allowFullScreen="true" width="640" height="360">
+						</object>
+						<form onsubmit="return false">
+							<input type="text" id="input" style="width:100px"></input>
+							<button onClick="setVideo()">Load</button>
+						</form>
 					</div>
 				</center>
 				<p><h4 id="info">How to use</h4>Simply copy and paste the id of any video into the text box, press the button or hit enter, and the video should change. Click the player to start the video and then hit either left or right and then immediately either up or down; this should start the game. When you die you should be able to just hit up or down to start the game again.<p>
