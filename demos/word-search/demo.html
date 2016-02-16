@@ -10,9 +10,11 @@
 		<link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="../../stylesheets/print.css" media="print">
 		<link rel="stylesheet" type="text/css" href="css/styles.css" />
-		<!--script src="javascripts/getQueryString.js" type="text/javascript"></script-->
+		<script type="text/javascript" src="script/content.js"></script>
+		<script type="text/javascript" src="script/fetchRemoteFile.js"></script>
+		<script type="text/javascript" src="script/getQueryString.js"></script>
 	</head>
-	<body>
+	<body onload="init();">
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>
@@ -24,7 +26,12 @@
 		</header>
 		<div class="container">
 			<section id="main_content">
-				
+				<center>
+					<h3>Theme: <b id="theme"></b></h3>
+					<h4>Difficulty level: <b id="difficulty"></b></h4>
+					<table id="grid"></table>
+					<ul id="words"></ul>
+				</center>
 			</section>
 		</div>
 	</body>
