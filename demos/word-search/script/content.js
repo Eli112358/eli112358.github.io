@@ -7,7 +7,7 @@ function getById(id) {
 }
 function init() {
 	var id=getURLParameter("id");
-	getFile("/"+id+".json",function(data) {
+	getFile("themes/"+id+".json",function(data) {
 		var obj=JSON.parse(data);
 		words=obj.words;
 		getById("theme").innerHtml=obj.theme;
