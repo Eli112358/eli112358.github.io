@@ -1,0 +1,25 @@
+a.latest-release {
+	display: inline-block;
+	background-color: #6cc644;
+	color: #ffffff;
+	padding: 5px 10px;
+	border-radius: 3px;
+	text-decoration: none;
+	font-weight: bold;
+	word-wrap: break-word;
+}
+div.latest-release {
+	margin-bottom: 10px;
+}
+.description .inline {
+	margin-left: 100px;
+}
+.description .hover .hidden {
+	
+}
+.description .hover .shown {
+	
+}
+.item :hover {
+	
+}
