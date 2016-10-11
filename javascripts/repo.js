@@ -17,6 +17,7 @@ function loadRepo() {
 	if(isFile) {
 		var usage=getById("usage");
 		var fileName=getById("file-name");
+		var pref=getCookie("descriptionStyle");
 		fileName.href="${repoName.href}/blob/master/${file}";
 		fileName.innerHTML=file;
 		getFile(file+".json",function(data){
