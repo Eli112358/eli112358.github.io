@@ -20,8 +20,10 @@ function loadRepo() {
 		fileName.href="${repoName.href}/blob/master/${file}";
 		fileName.innerHTML=file;
 		getFile(file+".json",function(data){
+			function loadDescription(item){}
+			function loadItem(item){}
 			var obj=JSON.parse(data.replace('\n',''));
-			//todo next
+			for(var item in obj.items)loadItem(item);
 		});
 	} else {
 		var filesList=getById("files");
