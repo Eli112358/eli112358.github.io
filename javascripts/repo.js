@@ -27,9 +27,10 @@ function loadRepo() {
 			function loadDescription(item){}
 			function loadItem(item){
 				switch(prefOptions.indexOf(pref)) {
-					case 0:
-					case 1:
-					case 2:
+					case 0://classes
+						//future idea: indent length set by cookie via attributes
+					case 1://two column div's (w/ ids)
+					case 2://id'ed divs,onhover attribute,and a script
 					default:
 						consoel.log(`Invalid value for ${cname}: `+pref);
 				}
