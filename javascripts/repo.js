@@ -24,6 +24,17 @@ function loadRepo() {
 		fileName.href=repoName.href+"/blob/master/"+file;
 		fileName.innerHTML=file;
 		var prefId=prefOptions.indexOf(pref);
+		var descriptionOnLeft=true;
+		var columnTitles=new Array();
+		columnTitles[0]="Item";
+		columnTitles[1]="Description";
+		if(descriptionOnLeft)columnTitles.reverse();
+		var columns=document.createElement("table");
+		if(prefId==2) {
+			columns.id="columns";
+			columns.innerHTML+=`<tr><th>${columnTitles[0]}</th><th>${columnTitles[1]}</th></tr>`
+			usage.appendChild(columns);
+		}
 		getFile(getPath(file+".json"),function(data){
 			function loadItem(item){
 				switch(prefId) {
@@ -31,7 +42,13 @@ function loadRepo() {
 						usage.innerHTML+=`<p>${item.item}</p><p> class="description indented">${item.description}</p>`;
 						//future idea: indent length set by cookie via attributes
 						break;
-					case 1://two column div's (w/ ids)
+					case 1:
+						var tdText=new Array();
+						tdText[0]=item.item;
+						tdText[1]=item.description;
+						if(descriptionOnLeft)tdText.reverse();
+						columns.innerHTML+=`<tr><td>${tdText[0]}</td><td>${tdText[1]}</td></tr>`;
+						break;
 					case 2:
 						usage.innerHTML+=`<div class="tooltip">${item.item}<span class="tooltiptext">${item.description}</span></div>`;
 						break;
