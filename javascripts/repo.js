@@ -24,17 +24,17 @@ function loadRepo() {
 		fileName.href=repoName.href+"/blob/master/"+file;
 		fileName.innerHTML=file;
 		getFile(getPath(file+".json"),function(data){
-			function loadDescription(item){}
 			function loadItem(item){
 				switch(prefOptions.indexOf(pref)) {
-					case 0://classes
+					case 0:
+						usage.innerHTML+=`<p>${item.item}</p><p> class="description indented">${item.description}</p>`;
 						//future idea: indent length set by cookie via attributes
+						break;
 					case 1://two column div's (w/ ids)
 					case 2://id'ed divs,onhover attribute,and a script
 					default:
 						consoel.log(`Invalid value for ${cname}: `+pref);
 				}
-				var htmlCode="";
 			}
 			var obj=JSON.parse(data.replace('\n',''));
 			for(var item in obj.items)loadItem(item);
