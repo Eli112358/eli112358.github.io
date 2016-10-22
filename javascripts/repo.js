@@ -31,7 +31,9 @@ function loadRepo() {
 						//future idea: indent length set by cookie via attributes
 						break;
 					case 1://two column div's (w/ ids)
-					case 2://id'ed divs,onhover attribute,and a script
+					case 2:
+						usage.innerHTML+=`<div class="tooltip">${item.item}<span class="tooltiptext">${item.description}</span></div>`;
+						break;
 					default:
 						consoel.log(`Invalid value for ${cname}: `+pref);
 				}
