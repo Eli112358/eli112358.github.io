@@ -23,9 +23,10 @@ function loadRepo() {
 		var pref=getCookie(cname);
 		fileName.href=repoName.href+"/blob/master/"+file;
 		fileName.innerHTML=file;
+		var prefId=prefOptions.indexOf(pref);
 		getFile(getPath(file+".json"),function(data){
 			function loadItem(item){
-				switch(prefOptions.indexOf(pref)) {
+				switch(prefId) {
 					case 0:
 						usage.innerHTML+=`<p>${item.item}</p><p> class="description indented">${item.description}</p>`;
 						//future idea: indent length set by cookie via attributes
@@ -44,7 +45,7 @@ function loadRepo() {
 	} else {
 		var filesList=getById("files");
 		getFile(getPath(repo,"files.txt"),function(data) {
-			var lines=data.split('/n');
+			var lines=data.split('\n');
 			for(var x=0;x<lines.length;x++){
 				filesList.innerHTML+=`<li><a href="usage.html?repo=${repo}&file=${lines[x]}">${lines[x]}</a></li>`;
 			}
