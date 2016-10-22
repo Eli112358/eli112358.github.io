@@ -14,3 +14,67 @@ div.latest-release {
 .description.indented {
 	margin-left: 100px;
 }
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted white;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	background-color: gray;
+	color: #0f0;
+	padding: 5px 0;
+	border-radius: 6px;
+	position: absolute;
+	z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+.tooltip .tooltiptext.bottom {
+	top: 100%;
+	left: 50%;
+}
+.tooltip .tooltiptext.left {
+	top: -5px;
+	right: 105%;
+}
+.tooltip .tooltiptext.right {
+	top: -5px;
+	left: 105%;
+}
+.tooltip .tooltiptext.top {
+	bottom: 100%;
+	left: 50%;
+}
+.arrow .tooltip .tooltiptext::after {
+	content: " ";
+	position: absolute;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: gray transparent transparent transparent;
+}
+.arrow .tooltip .tooltiptext.bottom::after {
+	top: 100%;
+	left: 50%;
+}
+.arrow .tooltip .tooltiptext.left::after {
+	top: 50%;
+	right: 100%;
+}
+.arrow .tooltip .tooltiptext.right::after {
+	top: 50%;
+	left: 100%;
+}
+.arrow .tooltip .tooltiptext.top::after {
+	bottom: 100%;
+	left: 50%;
+}
+.fade-in .tooltip .tooltiptext {
+	opacity: 0;
+	transition: opacity 1s;
+}
+.fade-in .tooltip:hover .tooltiptext {
+	opacity: 1;
+}
