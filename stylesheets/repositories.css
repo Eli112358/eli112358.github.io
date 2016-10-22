@@ -11,15 +11,6 @@ a.latest-release {
 div.latest-release {
 	margin-bottom: 10px;
 }
-.description .inline {
+.description.indented {
 	margin-left: 100px;
-}
-.description .hover .hidden {
-	
-}
-.description .hover .shown {
-	
-}
-.item :hover {
-	
 }
