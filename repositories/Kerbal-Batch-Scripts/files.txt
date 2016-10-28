@@ -1,2 +1,0 @@
-kspDataCli.cmd
-kspProfiles.cmd
