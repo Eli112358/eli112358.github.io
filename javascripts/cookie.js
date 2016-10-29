@@ -7,7 +7,7 @@ function getCookie(cname) {
 	var name=cname+"=";
 	if(document.cookie.indexOf(name)==-1)return "";
 	var sliced=document.cookie.substring(document.cookie.indexOf(name)+name.length);
-	return sliced.substr(0,sliced.indexOf(";"));
+	return sliced.indexOf(';')>-1?sliced.substr(0,sliced.indexOf(';')):sliced;
 }
 function checkCookie(cname) {
 	var cvalue=getCookie(cname);

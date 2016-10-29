@@ -6,19 +6,21 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-		<link rel="javascript" type="text/javascript" href="javascripts/fetchRemoteFile.js">
 		<title>Eli112358 - Repositories</title>
-	</head>
-	<body>
+		<script src="javascripts/fetchRemoteFile.js"></script>
 		<script>
-			document.onload=function(){getFile("repositories/repos.txt",function(data){
-				var reposList=document.getElementById("repos");
-				var lines=data.split('/n');
-				for(var x=0;x<lines.length;x++){
-					reposList.innerHTML+="<li><a href=\"repo.html?repo=${lines[x].replace(' ','-')}\">${lines[x]}</a></li>";
-				}
-			})}
+			function loadRepos() {
+				getFile("repositories/repos.txt",function(data) {
+					var reposList=document.getElementById("repos");
+					var lines=data.split('/n');
+					for(var x=0;x<lines.length;x++) {
+						reposList.innerHTML+=`<li><a href="repo.html?repo=${lines[x]}">${lines[x]}</a></li>`;
+					}
+				})
+			}
 		</script>
+	</head>
+	<body onload="loadRepos()">
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>
