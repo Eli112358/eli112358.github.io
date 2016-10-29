@@ -6,21 +6,13 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+		<link rel="stylesheet" type="text/css" href="stylesheets/repositories.css">
 		<title>Eli112358 - Repositories</title>
 		<script src="javascripts/fetchRemoteFile.js"></script>
-		<script>
-			function loadRepos() {
-				getFile("repositories/repos.txt",function(data) {
-					var reposList=document.getElementById("repos");
-					var lines=data.split('/n');
-					for(var x=0;x<lines.length;x++) {
-						reposList.innerHTML+=`<li><a href="repo.html?repo=${lines[x]}">${lines[x]}</a></li>`;
-					}
-				})
-			}
-		</script>
+		<script src="javascripts/getQueryString.js"></script>
+		<script src="javascripts/repo.js"></script>
 	</head>
-	<body onload="loadRepos()">
+	<body onload="loadRepo()">
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>
@@ -32,8 +24,10 @@
 		</header>
 		<div class="container">
 			<section id="main_content">
-				<h3><a href="https://github.com/Eli112358?tab=repositories">Repositories</a></h3>
-				<ul id="repos"></ul>
+				<h3><a href="index.html">Repositories</a> >> <a id="repo-name" href="404.html">Oops</a></h3>
+				<div class="latest-release"><a id="release" class="latest-release" href="https://github.com/eli112358">Latest release</a></div>
+				<h4>Files:</h4>
+				<ul id="files"></ul>
 			</section>
 		</div>
 	</body>
