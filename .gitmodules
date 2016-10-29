@@ -1,4 +1,4 @@
-[submodule "repositories\\Kerbal-Batch-Scripts"]
-	path = repositories\\Kerbal-Batch-Scripts
+[submodule "repositories/Kerbal-Batch-Scripts"]
+	path = repositories/Kerbal-Batch-Scripts
 	url = https://github.com/Eli112358/Kerbal-Batch-Scripts.git
 	branch = docs
