@@ -7,9 +7,11 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 		<title>Eli112358 - Repositories</title>
+		<script src="javascripts/donate.js"></script>
 		<script src="javascripts/fetchRemoteFile.js"></script>
 		<script>
 			function loadRepos() {
+				addDonateMessage();
 				getFile("repositories/repos.txt",function(data) {
 					var reposList=document.getElementById("repos");
 					var lines=data.split('/n');
@@ -27,7 +29,6 @@
 				<h2>Repositories</h2>
 				<section id="downloads">
 					<a href="https://github.com/eli112358" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-					<a href="https://www.paypal.me/eli112358">Please consider donating</a>
 				</section>
 			</div>
 		</header>

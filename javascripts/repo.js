@@ -5,6 +5,7 @@ function getById(id) {
 	return document.getElementById(id);
 }
 function loadRepo() {
+	addDonateMessage();
 	var repo=getURLParameter("repo");
 	var file=getURLParameter("file");
 	var isFile=file!==null;//typeof file!=="undefined"||
