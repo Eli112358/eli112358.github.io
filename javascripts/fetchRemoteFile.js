@@ -20,3 +20,8 @@ function loadTextFile(path) {
 	while(!complete);
 	return array;
 }
+function insertCodeFromFile(path,elementId) {
+	var code=loadTextFile(path);
+	var section=document.getElementById(elementId);
+	for(var x=0;x<code.length;x++) section.innerHTML+=code[x];
+}

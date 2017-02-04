@@ -8,20 +8,20 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 		<title>Snake on YouTube by Eli112358</title>
 		<style>h4 {text-align: center;}</style>
-		<script src="javascripts/donate.js"></script>
+		<script src="javascripts/fetchRemoteFile.js"></script>
 		<script src="javascripts/getQueryString.js"></script>
 		<script type="text/javascript">
 			function checkURL() {
+				insertCodeFromFile('donate.txt','downloads');
 				var videoID=getURLParameter('v');
 				if(videoID==null) videoID="0RzTXFF0OYE";
 				var input=document.getElementById("input");
 				input.value=videoID;
 				setVideo();
 			}
-			window.onload=checkURL;
 		</script>
 	</head>
-	<body onload="addDonateMessage()">
+	<body onload="checkURL()">
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>

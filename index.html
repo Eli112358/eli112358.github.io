@@ -7,11 +7,10 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 		<title>Eli112358 - Repositories</title>
-		<script src="javascripts/donate.js"></script>
 		<script src="javascripts/fetchRemoteFile.js"></script>
 		<script>
 			function loadRepos() {
-				addDonateMessage();
+				insertCodeFromFile('donate.txt','downloads');
 				getFile("repositories/repos.txt",function(data) {
 					var reposList=document.getElementById("repos");
 					var lines=data.split('/n');
