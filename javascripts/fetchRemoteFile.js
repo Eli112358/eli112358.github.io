@@ -10,18 +10,12 @@ function getFile(path,handler) {
 	xhttp.open("GET",path,true);
 	xhttp.send();
 }
-function loadTextFile(path) {
-	var array;
-	var complete=false;
-	getFile(path,function(data) {
-		array=data.split('\n');
-		complete=true;
-	});
-	while(!complete);
-	return array;
+function loadTextFile(path,textHandler) {
+	getFile(path,function(data) {textHandler(data.split('\n'));});
 }
 function insertCodeFromFile(path,elementId) {
-	var code=loadTextFile(path);
-	var section=document.getElementById(elementId);
-	for(var x=0;x<code.length;x++) section.innerHTML+=code[x];
+	loadTextFile(path,function(code) {
+		var section=document.getElementById(elementId);
+		for(var x=0;x<code.length;x++) section.innerHTML+=code[x];
+	});
 }
