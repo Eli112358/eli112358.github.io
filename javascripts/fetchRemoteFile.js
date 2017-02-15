@@ -23,9 +23,10 @@ function insertCodeFromFile(path,elementId) {
 function loadJsonFile(path,jsonLoader) {
 	jsonLoader.loaded='';
 	getFile(path,function(data) {
-		jsonLoader.preload(data);
-		jsonLoader.loaded=JSON.parse(fixJson(data));
-		jsonLoader.extra(data);
+		jsonLoader.data=data;
+		jsonLoader.preload();
+		jsonLoader.loaded=JSON.parse(fixJson(jsonLoader.data));
+		jsonLoader.extra();
 	});
 }
 function fixJson(data) {
