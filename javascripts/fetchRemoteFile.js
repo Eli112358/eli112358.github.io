@@ -24,7 +24,7 @@ function loadJsonFile(path,jsonLoader) {
 	jsonLoader.loaded='';
 	getFile(path,function(data) {
 		jsonLoader.preload(data);
-		jsonLoader.loaded=JSON.parse(fixJson(data);
+		jsonLoader.loaded=JSON.parse(fixJson(data));
 		jsonLoader.extra(data);
 	});
 }
