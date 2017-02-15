@@ -20,3 +20,15 @@ function insertCodeFromFile(path,elementId) {
 		for(var x=0;x<code.length;x++) section.innerHTML+=code[x];
 	});
 }
+function loadJsonFile(path,jsonLoader) {
+	jsonLoader.loaded='';
+	getFile(path,function(data) {
+		jsonLoader.preload(data);
+		jsonLoader.loaded=JSON.parse(fixJson(data);
+		jsonLoader.extra(data);
+	});
+}
+function fixJson(data) {
+	var escapeQuotedColon=function(match, p1) {return ': "'+p1.replace(/:/g,'@colon@')+'"'};
+	return data.replace(/:\s*"([^"]*)"/g,escapeQuotedColon).replace(/:\s*'([^']*)'/g,escapeQuotedColon).replace(/(['"])?([a-z0-9A-Z_]+)(['"])?\s*:/g,'"$2": ').replace(/@colon@/g,':');
+}
