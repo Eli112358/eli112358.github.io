@@ -6,3 +6,6 @@
 	path = minecraft/realm
 	url = https://github.com/Eli112358/eli112358.github.io.git
 	branch = Minecraft-Realm
+[submodule "social-data-getter"]
+	path = social-data-getter
+	url = https://github.com/Eli112358/social-data-getter-js.git
