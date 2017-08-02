@@ -9,3 +9,6 @@
 [submodule "social-data-getter"]
 	path = social-data-getter
 	url = https://github.com/Eli112358/social-data-getter-js.git
+[submodule "ksp-modpack-builder"]
+	path = kerbal-space-program\\modpack-builder
+	url = https://github.com/Eli112358/ksp-modpack-builder.git
