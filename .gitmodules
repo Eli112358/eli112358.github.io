@@ -12,3 +12,6 @@
 [submodule "ksp-modpack-builder"]
 	path = kerbal-space-program\\modpack-builder
 	url = https://github.com/Eli112358/ksp-modpack-builder.git
+[submodule "prime-time"]
+	path = prime-time
+	url = https://github.com/Eli112358/prime-time.git
