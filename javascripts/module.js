@@ -18,6 +18,6 @@ function getElements(prefix, names) {
   return ele;
 }
 function toggleButton(btn, prop, name, values) {
-  if(name!=='') storage.setItem(name, !parseBool(storage.getItem(name)));
+  if(name!=='') localStorage.setItem(name, !parseBool(localStorage.getItem(name)));
   btn[prop] = values[1-values.indexOf(btn[prop])];
 }
