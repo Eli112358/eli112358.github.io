@@ -17,7 +17,7 @@ function getElements(prefix, names) {
   names.forEach((n) => {ele[n] = getById(prefix + n)});
   return ele;
 }
-function toggleButton(btn, prop, name, values) {
-  if(name!=='') localStorage[name] = !parseBool(localStorage[name]);
+function toggleButton(btn, prop, store, values) {
+  if(store) localStorage[btn.id] = !parseBool(localStorage[btn.id]);
   btn[prop] = values[1-values.indexOf(btn[prop])];
 }
