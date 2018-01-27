@@ -5,7 +5,7 @@ function getById(id) {
 	return document.getElementById(id);
 }
 function loadRepo() {
-	insertCodeFromFile('donate.txt','downloads');
+	insertCodeFromFile('snippets/donate.txt','downloads');
 	var repo=getURLParameter("repo");
 	var file=getURLParameter("file");
 	var isFile=file!==null;//typeof file!=="undefined"||

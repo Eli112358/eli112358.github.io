@@ -10,7 +10,7 @@
 		<script src="javascripts/fetchRemoteFile.js"></script>
 		<script>
 			function loadRepos() {
-				insertCodeFromFile('donate.txt','downloads');
+				insertCodeFromFile('snippets/donate.txt','downloads');
 				getFile("repositories/repos.txt",function(data) {
 					var reposList=document.getElementById("repos");
 					var lines=data.split('/n');
