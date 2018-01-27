@@ -19,5 +19,5 @@ function getElements(prefix, names) {
 }
 function toggleButton(spec) {
   if(spec.stored) localStorage[spec.ele.id] = !parseBool(localStorage[spec.ele.id]);
-  spec.ele[spec.property] = spec.values[1-values.indexOf(spec.ele[spec.property])];
+  spec.ele[spec.property] = spec.values[1-spec.values.indexOf(spec.ele[spec.property])];
 }
