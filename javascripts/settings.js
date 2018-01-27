@@ -1,7 +1,11 @@
 function initSettings(settingsSpec) {
   var settings;
   var colors = ['red', 'green', 'blue'];
-  settings = initModule('settings-', ['main', 'open', 'close']);
+  ['main', 'color'].forEach((n) => {
+    insertCodeFromFile(`https://eli112358.github.io/snippets/settings-${n}.txt`, `settings-${n}`)
+  });
+  insertCodeFromFile('snippets/settings-specific.txt', 'settings-body');
+  settings = initModule('settings-', ['main', 'body', 'open', 'close']);
   settings.color = initModule('settings-color-', colors);
   settings.store = initModule('settings-store-', settingsSpec.store);
   settings.toggle = initModule('settings-toggle-', settingsSpec.toggle);

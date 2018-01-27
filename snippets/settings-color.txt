@@ -1,0 +1,15 @@
+Color:<br>
+<table>
+  <tr>
+    <td>Red:</td>
+    <td><input type="range" id="settings-color-red" value="68"></td>
+  </tr>
+  <tr>
+    <td>Green:</td>
+    <td><input type="range" id="settings-color-green" value="68"></td>
+  </tr>
+  <tr>
+    <td>Blue:</td>
+    <td><input type="range" id="settings-color-blue" value="255"></td>
+  </tr>
+</table>
