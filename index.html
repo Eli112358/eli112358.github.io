@@ -10,9 +10,9 @@
 		<script src="javascripts/fetchRemoteFile.js"></script>
 		<script>
 			function loadRepos() {
-				insertCodeFromFile('path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {
-					insertCodeFromFile('path': 'snippets/donate.txt', 'element': document.getElementById('donate'));
-				});
+				insertCodeFromFile({'path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {
+					insertCodeFromFile({'path': 'snippets/donate.txt', 'element': document.getElementById('donate')});
+				}});
 				getFile("repositories/repos.txt",function(data) {
 					var reposList=document.getElementById("repos");
 					var lines=data.split('/n');
