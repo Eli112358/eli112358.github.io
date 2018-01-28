@@ -14,10 +14,11 @@ function getFile(path,handler) {
 function loadTextFile(path,textHandler) {
 	getFile(path,function(data) {textHandler(data.split('\n'))});
 }
-function insertCodeFromFile(path,elementId) {
-	loadTextFile(path,function(code) {
+function insertCodeFromFile(spec) {
+	loadTextFile(spec.path,function(code) {
 		var section=document.getElementById(elementId);
-		for(var x=0;x<code.length;x++) section.innerHTML+=code[x];
+		for(var x=0;x<code.length;x++) spec.element.innerHTML+=code[x];
+		if(spec.hasOwnProperty('func')) spec.func();
 	});
 }
 function loadJsonFile(path,jsonLoader) {

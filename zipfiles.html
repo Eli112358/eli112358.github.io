@@ -10,8 +10,13 @@
 		<link rel="shortcut icon" href="images/icon.png">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script src="javascripts/fetchRemoteFile.js"></script>
+		<script>
+			function onload() {
+				insertCodeFromFile('path': 'snippets/donate.txt', 'element': document.getElementById('downloads'));
+			}
+		</script>
 	</head>
-	<body onload="insertCodeFromFile('donate.txt','downloads')">
+	<body onload="onload()">
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>

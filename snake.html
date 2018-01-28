@@ -12,7 +12,7 @@
 		<script src="javascripts/getQueryString.js"></script>
 		<script type="text/javascript">
 			function checkURL() {
-				insertCodeFromFile('snippets/donate.txt','downloads');
+				insertCodeFromFile('path': 'snippets/donate.txt', 'element': document.getElementById('downloads'));
 				var videoID=getURLParameter('v');
 				if(videoID==null) videoID="0RzTXFF0OYE";
 				var input=document.getElementById("input");
