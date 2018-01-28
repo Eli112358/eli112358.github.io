@@ -16,7 +16,6 @@ function loadTextFile(path,textHandler) {
 }
 function insertCodeFromFile(spec) {
 	loadTextFile(spec.path,function(code) {
-		var section=document.getElementById(elementId);
 		for(var x=0;x<code.length;x++) spec.element.innerHTML+=code[x];
 		if(spec.hasOwnProperty('func')) spec.func();
 	});
