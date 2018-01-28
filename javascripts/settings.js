@@ -1,11 +1,6 @@
 function initSettings(settingsSpec) {
   var settings;
   var colors = ['red', 'green', 'blue'];
-  settings.save = (ele) => {localStorage[ele.id] = ele.value};
-  settings.load = (ele) => {
-    var storedValue = localStorage[ele.id];
-    if(storedValue) ele.value = storedValue;
-  };
   insertCodeFromFile({
     'path': 'https://eli112358.github.io/snippets/settings-main.txt',
     'element': getById('settings-main'),
@@ -20,6 +15,11 @@ function initSettings(settingsSpec) {
           ['store', 'toggle'].forEach((n) => {
             settings[n] = initModule(`settings-${n}-`, settingsSpec[n]);
           });
+          settings.save = (ele) => {localStorage[ele.id] = ele.value};
+          settings.load = (ele) => {
+            var storedValue = localStorage[ele.id];
+            if(storedValue) ele.value = storedValue;
+          };
           settings.forEach = (func) => {
             ['color', 'store'].forEach((n) => {
               settings[n].ele.forEach(func)
