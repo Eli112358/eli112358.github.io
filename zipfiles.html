@@ -12,7 +12,9 @@
 		<script src="javascripts/fetchRemoteFile.js"></script>
 		<script>
 			function onload() {
-				insertCodeFromFile('path': 'snippets/donate.txt', 'element': document.getElementById('downloads'));
+				insertCodeFromFile('path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {
+					insertCodeFromFile('path': 'snippets/donate.txt', 'element': document.getElementById('donate'));
+				});
 			}
 		</script>
 	</head>

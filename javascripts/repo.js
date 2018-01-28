@@ -5,7 +5,9 @@ function getById(id) {
 	return document.getElementById(id);
 }
 function loadRepo() {
-	insertCodeFromFile('path': 'snippets/donate.txt', 'element': document.getElementById('downloads'));
+	insertCodeFromFile('path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {
+		insertCodeFromFile('path': 'snippets/donate.txt', 'element': document.getElementById('donate'));
+	});
 	var repo=getURLParameter("repo");
 	var file=getURLParameter("file");
 	var isFile=file!==null;//typeof file!=="undefined"||
