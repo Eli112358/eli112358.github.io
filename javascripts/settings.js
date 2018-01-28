@@ -1,5 +1,4 @@
 function initSettings(settingsSpec) {
-  var settings;
   var colors = ['red', 'green', 'blue'];
   insertCodeFromFile({
     'path': 'https://eli112358.github.io/snippets/settings-main.txt',
@@ -10,33 +9,33 @@ function initSettings(settingsSpec) {
         'element': getById('settings-color'),
         'func': () => {
           insertCodeFromFile('snippets/settings-specific.txt', 'settings-body');
-          settings = initModule('settings-', ['main', 'body', 'open', 'close']);
-          settings.color = initModule('settings-color-', colors);
+          settingsSpec.returnObject = initModule('settings-', ['main', 'body', 'open', 'close']);
+          settingsSpec.returnObject.color = initModule('settings-color-', colors);
           ['store', 'toggle'].forEach((n) => {
             settings[n] = initModule(`settings-${n}-`, settingsSpec[n]);
           });
-          settings.save = (ele) => {localStorage[ele.id] = ele.value};
-          settings.load = (ele) => {
+          settingsSpec.returnObject.save = (ele) => {localStorage[ele.id] = ele.value};
+          settingsSpec.returnObject.load = (ele) => {
             var storedValue = localStorage[ele.id];
             if(storedValue) ele.value = storedValue;
           };
-          settings.forEach = (func) => {
+          settingsSpec.returnObject.forEach = (func) => {
             ['color', 'store'].forEach((n) => {
               settings[n].ele.forEach(func)
             })
           };
-          settings.forEach(settings.load);
-          settings.model = initModel(settings, () => {settings.forEach(settings.save)});
-          settings.color.set = (n, val) => {
+          settingsSpec.returnObject.forEach(settingsSpec.returnObject.load);
+          settingsSpec.returnObject.model = initModel(settings, () => {settingsSpec.returnObject.forEach(settingsSpec.returnObject.save)});
+          settingsSpec.returnObject.color.set = (n, val) => {
             document.documentElement.style.setProperty(`--${n}`, val)
           };
           colors.forEach((n) => {
-            settings.color.set(n, settings.color.ele[n].value);
-            settings.color.ele[n].addEventListener('change', function() {
-              settings.color.set(n, this.value)
+            settingsSpec.returnObject.color.set(n, settingsSpec.returnObject.color.ele[n].value);
+            settingsSpec.returnObject.color.ele[n].addEventListener('change', function() {
+              settingsSpec.returnObject.color.set(n, this.value)
             });
           });
-          settings.toggle.setup = (spec) => {
+          settingsSpec.returnObject.toggle.setup = (spec) => {
             spec.ele.onclick = () => {
               var specCopy = spec;
               toggleButton(specCopy);
@@ -53,5 +52,4 @@ function initSettings(settingsSpec) {
       })
     }
   });
-  return settings;
 }
