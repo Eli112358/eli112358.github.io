@@ -5,9 +5,7 @@ function getById(id) {
 	return document.getElementById(id);
 }
 function loadRepo() {
-	insertCodeFromFile({'path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {
-		insertCodeFromFile({'path': 'snippets/donate.txt', 'element': document.getElementById('donate')});
-	}});
+	insertCodeFromFile({'path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {}});
 	var repo=getURLParameter("repo");
 	var file=getURLParameter("file");
 	var isFile=file!==null;//typeof file!=="undefined"||
@@ -66,11 +64,11 @@ function loadRepo() {
 	} else {
 		repoName.href=repoUrl;
 		var filesList=getById("files");
-		getFile(getPath(repo,"files.txt"),function(data) {
+		getFile({"path": getPath(repo,"files.txt"), "handler": function(data) {
 			var lines=data.split('\n');
 			for(var x=0;x<lines.length;x++){
 				filesList.innerHTML+=`<li><a href="usage.html?repo=${repo}&file=${lines[x]}">${lines[x]}</a></li>`;
 			}
-		});
+		}});
 	}
 }

@@ -10,16 +10,14 @@
 		<script src="javascripts/fetchRemoteFile.js"></script>
 		<script>
 			function loadRepos() {
-				insertCodeFromFile({'path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {
-					insertCodeFromFile({'path': 'snippets/donate.txt', 'element': document.getElementById('donate')});
-				}});
-				getFile("repositories/repos.txt",function(data) {
+				insertCodeFromFile({'path': 'snippets/header.txt', 'id': 'header', 'func': () => {}});
+				getFile({"path": "repositories/repos.txt", "handler": function(data) {
 					var reposList=document.getElementById("repos");
 					var lines=data.split('/n');
 					for(var x=0;x<lines.length;x++) {
 						reposList.innerHTML+=`<li><a href="repo.html?repo=${lines[x]}">${lines[x]}</a></li>`;
 					}
-				})
+				}})
 			}
 		</script>
 	</head>
@@ -28,7 +26,7 @@
 			<div class="container">
 				<h1>Eli112358</h1>
 				<h2>Repositories</h2>
-				<section id="downloads"></section>
+				<section id="header"></section>
 			</div>
 		</header>
 		<div class="container">
