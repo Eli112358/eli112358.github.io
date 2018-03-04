@@ -9,26 +9,31 @@ function getFile(spec) {
 	};
 	console.log("["+getDate()+"] Sending request for "+spec.path);
 	xhttp.open("GET",spec.path,true);
-	if(spec.mimeType!==undefined) xhttp.overrideMimeType(spec.mimeType);
+	if(spec.hasOwnProperty('mimeType')) xhttp.overrideMimeType(spec.mimeType);
 	xhttp.send();
 }
 function loadTextFile(path,textHandler) {
 	getFile({"path": path, "handler": function(data) {textHandler(data.split('\n'))}});
 }
 function insertCodeFromFile(spec) {
-	loadTextFile(spec.path,function(code) {
-		var element;
+	spec.handler = (data) => {
+		var code = data.split('\n');
+		var element = null;
 		if(spec.hasOwnProperty('element')) {
 			element = spec.element;
 		} else if(spec.hasOwnProperty('id')) {
 			console.log(`Looking for element id '${spec.id}'`);
 			element = document.getElementById(spec.id);
-		} else {
-			console.log('No element was given');
+		}
+		if(element==null) {
+			console.log('No element was given:');
+			console.log(spec);
+			return;
 		}
 		for(var x=0;x<code.length;x++) element.innerHTML+=code[x];
 		if(spec.hasOwnProperty('func')) spec.func();
-	});
+	};
+	getFile(spec);
 }
 function loadJsonFile(path,jsonLoader) {
 	jsonLoader.loaded='';

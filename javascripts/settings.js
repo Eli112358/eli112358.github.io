@@ -11,6 +11,7 @@ function initSettings(spec) {
           insertCodeFromFile({
             'path': 'snippets/settings-specific.txt',
             'id': 'settings-body',
+            'mimeType': 'text/html',
             'func': () => {
               spec.set(initModule('settings-', ['main', 'body', 'open', 'close']));
               spec.get().color = initModule('settings-color-', colors);
