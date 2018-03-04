@@ -17,9 +17,16 @@ function loadTextFile(path,textHandler) {
 }
 function insertCodeFromFile(spec) {
 	loadTextFile(spec.path,function(code) {
-		console.log(`Looking for element id '${spec.id}'`);
-		var ele = document.getElementById(spec.id);
-		for(var x=0;x<code.length;x++) ele.innerHTML+=code[x];
+		var element;
+		if(spec.hasOwnProperty('element')) {
+			element = spec.element;
+		} else if(spec.hasOwnProperty('id')) {
+			console.log(`Looking for element id '${spec.id}'`);
+			element = document.getElementById(spec.id);
+		} else {
+			console.log('No element was given');
+		}
+		for(var x=0;x<code.length;x++) element.innerHTML+=code[x];
 		if(spec.hasOwnProperty('func')) spec.func();
 	});
 }
