@@ -19,12 +19,8 @@ function insertCodeFromFile(spec) {
 	spec.handler = (data) => {
 		var code = data.split('\n');
 		var element = null;
-		if(spec.hasOwnProperty('element')) {
-			element = spec.element;
-		} else if(spec.hasOwnProperty('id')) {
-			console.log(`Looking for element id '${spec.id}'`);
-			element = document.getElementById(spec.id);
-		}
+		if(spec.hasOwnProperty('element')) element = spec.element;
+		else if(spec.hasOwnProperty('id')) element = document.getElementById(spec.id);
 		if(element==null) {
 			console.log('No element was given:');
 			console.log(spec);
@@ -34,6 +30,12 @@ function insertCodeFromFile(spec) {
 		if(spec.hasOwnProperty('func')) spec.func();
 	};
 	getFile(spec);
+}
+function loadSnippets(spec) {
+	var spec1 = spec;
+	if(!spec1.hasOwnProperty('path')) spec1.path = `https://eli112358.github.io/snippets/${spec1.id}.txt`;
+	if(spec1.hasOwnProperty('next')) spec1.func = () => {loadSnippet(spec1.next)};
+	insertCodeFromFile(spec1);
 }
 function loadJsonFile(path,jsonLoader) {
 	jsonLoader.loaded='';
