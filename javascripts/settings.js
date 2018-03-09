@@ -3,7 +3,7 @@ function initSettings(spec) {
   loadSnippets({
     'id': 'settings-main', 'next': {
     'id': 'settings-color', 'next': {
-    'id': 'settings-body', 'path': 'snippets/settings-specific', 'func': () => {
+    'id': 'settings-body', 'path': 'snippets/settings-specific.txt', 'mimeType': 'text/html', 'func': () => {
       spec.set(initModule('settings-', ['main', 'body', 'open', 'close']));
       spec.get().color = initModule('settings-color-', colors);
       ['store', 'toggle'].forEach((n) => {if(spec.hasOwnProperty(n)) spec.get()[n] = initModule(`settings-${n}-`, spec[n])});
