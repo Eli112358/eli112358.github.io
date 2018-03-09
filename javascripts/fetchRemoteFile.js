@@ -34,7 +34,7 @@ function insertCodeFromFile(spec) {
 function loadSnippets(spec) {
 	var spec1 = spec;
 	if(!spec1.hasOwnProperty('path')) spec1.path = `https://eli112358.github.io/snippets/${spec1.id}.txt`;
-	if(spec1.hasOwnProperty('next')) spec1.func = () => {loadSnippet(spec1.next)};
+	if(spec1.hasOwnProperty('next')) spec1.func = () => {loadSnippets(spec1.next)};
 	insertCodeFromFile(spec1);
 }
 function loadJsonFile(path,jsonLoader) {
