@@ -13,7 +13,7 @@ function initModule(prefix, elementNames) {
   return module;
 }
 function getElements(prefix, names) {
-  var ele = [];
+  var ele = {};
   names.forEach((n) => {ele[n] = getById(prefix + n)});
   return ele;
 }

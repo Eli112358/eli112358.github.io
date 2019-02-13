@@ -9,7 +9,7 @@ function initSettings(spec) {
       ['store', 'toggle'].forEach((n) => {if(spec.hasOwnProperty(n)) spec.get()[n] = initModule(`settings-${n}-`, spec[n])});
       spec.get().save = (ele) => {localStorage[ele.id] = ele.value};
       spec.get().load = (ele) => {if(localStorage.hasOwnProperty(ele.id)) ele.value = localStorage[ele.id]};
-      if(spec.hasOwnProperty('store')) spec.get().store.ele.forEach((n) => {spec.get().load(spec.get().store.ele[n])});
+      if(spec.hasOwnProperty('store')) Object.keys(spec.get().store.ele).forEach((n, i) => {spec.get().load(spec.get().store.ele[n])});
       spec.get().color.set = (n, val) => {document.documentElement.style.setProperty(`--${n}`, val)};
       colors.forEach((n) => {
         spec.get().load(spec.get().color.ele[n]);
