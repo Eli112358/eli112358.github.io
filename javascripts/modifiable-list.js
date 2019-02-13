@@ -1,7 +1,12 @@
 function initModifiableList(spec) {
-  spec.set(initModule(spec.prefix, ['main', 'list', 'index', 'word', 'add']));
+  spec.set(initModule(spec.prefix, ['main', 'list', 'index', 'value', 'add']));
   spec.get().array = [];
-  spec.get().ele.add.onclick = () => {};
+  spec.get().ele.add.onclick = () => {
+    spec.get().set({
+      'index': spec.get().ele.index.value,
+      'value': spec.get().ele.value.value
+    })
+  };
   spec.get().set = (spec1) => {
     spec.get().array[spec1.index] = spec1.value;
     spec.get().redraw();
