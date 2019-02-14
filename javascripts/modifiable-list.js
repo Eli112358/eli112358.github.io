@@ -3,8 +3,8 @@ function initModifiableList(spec) {
 	spec.get().array = [];
 	spec.get().ele['add'].onclick = () => {
 		spec.get().set({
-		'index': spec.get().ele.index.value,
-		'value': spec.get().ele.value.value
+			'index': spec.get().ele.index.value,
+			'value': spec.get().ele.value.value
 		})
 	};
 	spec.get().set = (spec1) => {
