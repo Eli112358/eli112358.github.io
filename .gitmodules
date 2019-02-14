@@ -13,6 +13,3 @@
 	path = prime-time
 	url = https://github.com/Eli112358/prime-time.git
 	branch = master
-[submodule "fizz-buzz"]
-	path = fizz-buzz
-	url = https://github.com/Eli112358/fizz-buzz.git
