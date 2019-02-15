@@ -36,7 +36,7 @@ function initModifiableList(spec) {
 			if(!spec.get().array.hasOwnProperty(i)) continue;
 
 			var data = [];
-			for (var i = 0; i < 3; i++) {
+			for (var j = 0; j < 3; j++) {
 				data.push(document.createElement('td'));
 			}
 
