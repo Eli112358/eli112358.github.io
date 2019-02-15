@@ -37,14 +37,14 @@ function initModifiableList(spec) {
 			}
 
 			data[0].classList.add('close');
-			data[0].innerText = '&times;';
+			data[0].innerHTML = '&times;';
 			data[0].onclick = () => {
 				spec.get().set({'index': i});
 			};
 
 			data[1].innerText = `${i}:`;
 
-			data[2].classList.add(`${spec.prefix}-value`);
+			data[2].classList.add(`${spec.prefix}value`);
 			data[2].innerText = spec.get().array[i];
 
 			var row = document.createElement('tr');
