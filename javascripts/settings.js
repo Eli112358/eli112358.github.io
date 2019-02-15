@@ -6,7 +6,10 @@ function initSettings(spec) {
 				'id': 'settings-body',
 				'path': 'snippets/settings-specific.txt',
 				'mimeType': 'text/html',
-				'func': () => {
+				'preAppend': () => {
+					if(spec.hasOwnProperty('preAppend')) spec.preAppend();
+				},
+				'postAppend': () => {
 					spec.set(initModule('settings-', ['main', 'body', 'open', 'close']));
 					spec.get().color = initModule('settings-color-', colors);
 					['store', 'toggle'].forEach((n) => {if(spec.hasOwnProperty(n)) spec.get()[n] = initModule(`settings-${n}-`, spec[n])});
@@ -35,7 +38,7 @@ function initSettings(spec) {
 						}
 						else localStorage[spec1.ele.id] = 'false';
 					};
-					if(spec.hasOwnProperty('func')) spec.func();
+					if(spec.hasOwnProperty('postAppend')) spec.postAppend();
 				}
 			}
 		}

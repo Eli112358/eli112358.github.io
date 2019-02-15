@@ -1,3 +1,12 @@
+function prepModifiableList(spec) {
+	loadSnippets({
+		'id': `${spec.prefix}main`,
+		'path': 'https://eli112358.github.io/snippets/modifiable-list.txt',
+		'preAppend': (code) => {
+			code = code.replace('{prefix}-', spec.prefix)
+		}
+	});
+}
 function initModifiableList(spec) {
 	spec.set(initModule(spec.prefix, ['main', 'form', 'list', 'index', 'value']));
 	if (spec.hasOwnProperty('style')) {
@@ -48,7 +57,7 @@ function initModifiableList(spec) {
 
 			data[1].innerText = `${i}:`;
 
-			data[2].classList.add(`${spec.prefix}value`);
+			data[2].classList.add('modifiable-list-value');
 			data[2].innerText = spec.get().array[i];
 
 			var row = document.createElement('tr');

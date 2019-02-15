@@ -26,16 +26,23 @@ function insertCodeFromFile(spec) {
 			console.log(spec);
 			return;
 		}
+
+		if(spec.hasOwnProperty('preAppend')) spec.preAppend(code);
 		for(var x=0;x<code.length;x++) element.innerHTML+=code[x];
-		if(spec.hasOwnProperty('func')) spec.func();
+		if(spec.hasOwnProperty('postAppend')) spec.postAppend();
+
+		if(spec.hasOwnProperty('handlerFinished')) spec.handlerFinished();
 	};
 	getFile(spec);
 }
 function loadSnippets(spec) {
-	var spec1 = spec;
-	if(!spec1.hasOwnProperty('path')) spec1.path = `https://eli112358.github.io/snippets/${spec1.id}.txt`;
-	if(spec1.hasOwnProperty('next')) spec1.func = () => {loadSnippets(spec1.next)};
-	insertCodeFromFile(spec1);
+	if(!spec.hasOwnProperty('path')) {
+		spec.path = `https://eli112358.github.io/snippets/${spec.id}.txt`;
+	}
+	if(spec.hasOwnProperty('next')) {
+		spec.handlerFinished = () => {loadSnippets(spec.next)};
+	}
+	insertCodeFromFile(spec);
 }
 function loadJsonFile(path,jsonLoader) {
 	jsonLoader.loaded='';
