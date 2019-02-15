@@ -1,6 +1,6 @@
 function initModifiableList(spec) {
-	spec.id = `${spec.prefix}main`;
-	spec.path = 'https://eli112358.github.io/snippets/modifiable-list.txt';
+	spec.id = 'modifiable-list';
+	spec.element = getById(`${spec.prefix}main`);
 	spec.preAppend = (code) => {
 		code = code.replace('{prefix}-', spec.prefix)
 	};
