@@ -1,5 +1,11 @@
 function initModifiableList(spec) {
 	spec.set(initModule(spec.prefix, ['main', 'list', 'index', 'value', 'add']));
+	if (spec.hasOwnProperty('style')) {
+		var style = document.createElement('style');
+		style.type = 'text/css';
+		style.innerText = spec.style;
+		document.head.appendChild(style);
+	}
 	spec.get().array = [];
 	spec.get().ele.add.onclick = () => {
 		spec.get().set({
@@ -24,7 +30,27 @@ function initModifiableList(spec) {
 		spec.get().ele.list.innerHTML = '';
 		for(var i in spec.get().array) {
 			if(!spec.get().array.hasOwnProperty(i)) continue;
-			spec.get().ele.list.innerHTML += `<li value="${i}">${spec.get().array[i]}\t<span class="close" onclick="${spec.get()}.set({'index': ${i}})">&times;</span></li>`;
+
+			var data = [];
+			for (var i = 0; i < 3; i++) {
+				data.push(document.createElement('td'));
+			}
+
+			data[0].classList.add('close');
+			data[0].innerText = '&times;';
+			data[0].onclick = () => {
+				spec.get().set({'index': i});
+			};
+
+			data[1].innerText = `${i}:`;
+
+			data[2].classList.add(`${spec.prefix}-value`);
+			data[2].innerText = spec.get().array[i];
+
+			var row = document.createElement('tr');
+			data.forEach((cell) => {row.appendChild(cell)});
+
+			spec.get().ele.list.appendChild(row);
 		}
 	};
 }
