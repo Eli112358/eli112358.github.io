@@ -5,7 +5,7 @@ function initModifiableList(spec) {
 		'preAppend': (code) => {
 			code = code.replace('{prefix}-', spec.prefix)
 		},
-		'next': () => {
+		'postAppend': () => {
 			spec.set(initModule(spec.prefix, ['main', 'form', 'list', 'index', 'value']));
 			if (spec.hasOwnProperty('style')) {
 				var style = document.createElement('style');
