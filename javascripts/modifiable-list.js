@@ -23,8 +23,8 @@ function initModifiableList(spec) {
 	spec.get().redraw = () => {
 		spec.get().ele.list.innerHTML = '';
 		for(var i in spec.get().array) {
-		  if(!spec.get().array.hasOwnProperty(i)) continue;
-		  spec.get().ele.list.innerHTML += `<li value="${i}">${spec.get().array[i]}\t<span class="close" onclick="${spec.get()}.set({'index': ${i}})">&times;</span></li>`;
+			if(!spec.get().array.hasOwnProperty(i)) continue;
+			spec.get().ele.list.innerHTML += `<li value="${i}">${spec.get().array[i]}\t<span class="close" onclick="${spec.get()}.set({'index': ${i}})">&times;</span></li>`;
 		}
 	};
 }
