@@ -16,7 +16,11 @@ function initModifiableList(spec) {
 		spec.get().ele.value.value = '';
 	};
 	spec.get().set = (spec1) => {
-		spec.get().array[spec1.index] = spec1.value;
+		if (spec1.hasOwnProperty('value')) {
+			spec.get().array[spec1.index] = spec1.value;
+		} else {
+			spec.get().array.pop(spec1.index);
+		}
 		spec.get().redraw();
 	};
 	spec.get().save = () => {
