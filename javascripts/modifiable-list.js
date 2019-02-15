@@ -1,5 +1,5 @@
 function initModifiableList(spec) {
-	spec.set(initModule(spec.prefix, ['main', 'list', 'index', 'value', 'add']));
+	spec.set(initModule(spec.prefix, ['main', 'form', 'list', 'index', 'value']));
 	if (spec.hasOwnProperty('style')) {
 		var style = document.createElement('style');
 		style.type = 'text/css';
@@ -7,7 +7,7 @@ function initModifiableList(spec) {
 		document.head.appendChild(style);
 	}
 	spec.get().array = [];
-	spec.get().ele.add.onclick = () => {
+	spec.get().ele.form.submit = () => {
 		spec.get().set({
 			'index': spec.get().ele.index.value,
 			'value': spec.get().ele.value.value
