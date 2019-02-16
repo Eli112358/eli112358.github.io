@@ -2,7 +2,7 @@ function initModifiableList(spec) {
 	spec.id = 'modifiable-list';
 	spec.preAppend = (code) => {
 		for (var i = 0; i < code.length; i++) {
-			while (code[i].contains('{prefix}-')) {
+			while (code[i].indexOf('{prefix}-') > -1) {
 				code[i] = code[i].replace('{prefix}-', spec.prefix)
 			}
 		}
