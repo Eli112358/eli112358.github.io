@@ -9,6 +9,17 @@ function initSettings(spec) {
 				'preAppend': () => {
 					if(spec.hasOwnProperty('preAppend')) spec.preAppend();
 				},
+				'next': {
+					'id': 'header',
+					'postAppend': () => {
+						['button', 'input'].forEach((tag) => {
+							[].forEach.call(getByTag(tag), (ele) => {
+								if (ele.type == 'image') continue;
+								ele.classList.add('btn')
+							})
+						})
+					}
+				},
 				'postAppend': () => {
 					spec.set(initModule('settings-', ['main', 'body', 'open', 'close']));
 					spec.get().color = initModule('settings-color-', colors);
