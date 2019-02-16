@@ -54,7 +54,7 @@ function initModifiableList(spec) {
 				data[0].dataset.index = i;
 				data[0].onclick = () => {
 					var target = window.event.target;
-					spec.get().set({'index': target.dataset.index});
+					spec.get().set({'index': parseInt(target.dataset.index)});
 				};
 
 				data[1].innerText = `${i}:`;
