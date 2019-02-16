@@ -1,12 +1,13 @@
 .modifiable-list-form {
-	margin: 0px
+	margin: 0px;
+	display: inline-flex;
 }
 .modifiable-list-index {
-	width: 50px
+	width: 50px;
 }
 .modifiable-list-list td {
-	padding: 0px 3px
+	padding: 0px 3px;
 }
 .modifiable-list-value {
-	width: 100%
+	width: 100%;
 }
