@@ -14,7 +14,7 @@ function initSettings(spec) {
 					'postAppend': () => {
 						['button', 'input'].forEach((tag) => {
 							[].forEach.call(getByTag(tag), (ele) => {
-								if (ele.type == 'image') continue;
+								if (ele.type == 'image') return;
 								ele.classList.add('btn')
 							})
 						})
