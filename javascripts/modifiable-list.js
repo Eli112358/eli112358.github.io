@@ -25,11 +25,7 @@ function initModifiableList(spec) {
 			spec.get().ele.value.value = '';
 		};
 		spec.get().set = (spec1) => {
-			if (spec1.hasOwnProperty('value')) {
-				spec.get().array[spec1.index] = spec1.value;
-			} else {
-				spec.get().array.pop(spec1.index);
-			}
+			spec.get().array[spec1.index] = spec1.value;
 			spec.get().redraw();
 		};
 		spec.get().save = () => {
@@ -43,6 +39,7 @@ function initModifiableList(spec) {
 			spec.get().ele.list.innerHTML = '';
 			for(var i in spec.get().array) {
 				if(!spec.get().array.hasOwnProperty(i)) continue;
+				if(!spec.get().array[i]) continue;
 
 				var data = [];
 				for (var j = 0; j < 3; j++) {
