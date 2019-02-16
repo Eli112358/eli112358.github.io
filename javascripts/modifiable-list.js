@@ -8,13 +8,13 @@ function initModifiableList(spec) {
 		}
 	};
 	spec.postAppend = () => {
-		spec.set(initModule(spec.prefix, ['main', 'form', 'list', 'index', 'value']));
-		if (spec.hasOwnProperty('style')) {
-			var style = document.createElement('style');
-			style.type = 'text/css';
-			style.innerText = spec.style;
-			document.head.appendChild(style);
-		}
+		var ids = ['main', 'form', 'list', 'index', 'value'];
+		spec.set(initModule(spec.prefix, ids));
+
+		ids.forEach((id) => {
+			spec.get().ele[id].classList.add(`modifiable-list-${id}`);
+		});
+
 		spec.get().array = [];
 		spec.get().ele.form.submit = () => {
 			spec.get().set({
