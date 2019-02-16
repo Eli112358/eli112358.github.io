@@ -16,7 +16,7 @@ function initModifiableList(spec) {
 		});
 
 		spec.get().array = [];
-		spec.get().ele.form.submit = () => {
+		spec.get().ele.form.onsubmit = () => {
 			spec.get().set({
 				'index': spec.get().ele.index.value,
 				'value': spec.get().ele.value.value
