@@ -1,7 +1,9 @@
 function initModifiableList(spec) {
 	spec.id = 'modifiable-list';
 	spec.preAppend = (code) => {
-		code = code.replace('{prefix}-', spec.prefix)
+		for (var i = 0; i < code.length; i++) {
+			code[i] = code[i].replace('{prefix}-', spec.prefix)
+		}
 	};
 	spec.postAppend = () => {
 		spec.set(initModule(spec.prefix, ['main', 'form', 'list', 'index', 'value']));
