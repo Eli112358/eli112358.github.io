@@ -2,6 +2,3 @@
 	path = repositories/Kerbal-Batch-Scripts
 	url = https://github.com/Eli112358/Kerbal-Batch-Scripts.git
 	branch = docs
-[submodule "social-data-getter"]
-	path = social-data-getter
-	url = https://github.com/Eli112358/social-data-getter-js.git
