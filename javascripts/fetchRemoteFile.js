@@ -28,7 +28,7 @@ function insertCodeFromFile(spec) {
 		}
 
 		if(spec.hasOwnProperty('preAppend')) spec.preAppend(code);
-		for(var x=0;x<code.length;x++) element.innerHTML+=code[x];
+		for(var x=0;x<code.length;x++) element.insertAdjacentHTML('beforeEnd', code[x]);
 		if(spec.hasOwnProperty('postAppend')) spec.postAppend();
 
 		if(spec.hasOwnProperty('handlerFinished')) spec.handlerFinished();
