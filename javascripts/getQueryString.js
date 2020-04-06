@@ -1,4 +1,6 @@
-//Copied from http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
-function getURLParameter(name) {
-	return decodeURIComponent((new RegExp('[?|&]'+name+'='+'([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g,'%20'))||null;
+console.warn("WARNING! 'getQueryString.js' is deprecated, please use 'url-parameters.js' instead!");
+async function getURLParameter(name) {
+	console.warn(`WARNING! 'getURLParameter' is deprecated, please use 'urlParameters.${name}' or 'urlParameters["name"]' instead!`);
+	await loadFiles(['javascripts/url-parameters.js']);
+	return urlParameters[name];
 }
