@@ -1,59 +1,85 @@
-function getFile(spec) {
-	var getDate=function() {return new Date().toString().substring(16,24)};
-	var xhttp=new XMLHttpRequest();
-	xhttp.onreadystatechange=function () {
-		if(xhttp.readyState==4&&xhttp.status==200) {
-			console.log("["+getDate()+"] Response recieved for "+spec.path);
-			spec.handler(xhttp.responseText);
-		}
-	};
-	console.log("["+getDate()+"] Sending request for "+spec.path);
-	xhttp.open("GET",spec.path,true);
-	if(spec.hasOwnProperty('mimeType')) xhttp.overrideMimeType(spec.mimeType);
-	xhttp.send();
+console.warn("WARNING! 'fetchRemoteFile.js' is deprecated, please link to 'remote-file.js' instead!");
+function getPromise() {
+	let res, rej;
+	let promise = new Promise(function(resolve, reject) {
+		[res, rej] = [resolve, reject];
+	});
+	[promise.resolve, promise.reject] = [res, rej];
+	return promise;
 }
-function loadTextFile(path,textHandler) {
-	getFile({"path": path, "handler": function(data) {textHandler(data.split('\n'))}});
-}
-function insertCodeFromFile(spec) {
-	spec.handler = (data) => {
-		var code = data.split('\n');
-		var element = null;
-		if(spec.hasOwnProperty('element')) element = spec.element;
-		else if(spec.hasOwnProperty('id')) element = document.getElementById(spec.id);
-		if(element==null) {
-			console.log('No element was given:');
-			console.log(spec);
-			return;
-		}
-
-		if(spec.hasOwnProperty('preAppend')) spec.preAppend(code);
-		for(var x=0;x<code.length;x++) element.insertAdjacentHTML('beforeEnd', code[x]);
-		if(spec.hasOwnProperty('postAppend')) spec.postAppend();
-
-		if(spec.hasOwnProperty('handlerFinished')) spec.handlerFinished();
-	};
-	getFile(spec);
-}
-function loadSnippets(spec) {
-	if(!spec.hasOwnProperty('path')) {
-		spec.path = `https://eli112358.github.io/snippets/${spec.id}.txt`;
+const files = {
+	css: {
+		tag: 'link',
+		type: 'text/css',
+		rel: 'stylesheet',
+		key: 'href'
+	},
+	js: {
+		tag: 'script',
+		type: 'text/javascript',
+		key: 'src'
 	}
-	if(spec.hasOwnProperty('next')) {
-		spec.handlerFinished = () => {loadSnippets(spec.next)};
+};
+function loadFiles(urls) {
+	return Promise.all(urls.map((url) => {
+		let file = files[url.substr(url.lastIndexOf('.') + 1)];
+		let element = document.createElement(file.tag);
+		if (file.rel) {
+			element.rel = file.rel;
+		}
+		element.type = file.type;
+		let promise = getPromise();
+		element.onload = promise.resolve;
+		element[file.key] = `${document.location.origin}/${url}`;
+		document.body.appendChild(element);
+		return promise;
+	}));
+}
+async function remoteFile(args) {
+	await loadFiles(['javascripts/remote-file.js']);
+	return new RemoteFile(args);
+}
+async function getFile(spec) {
+	console.warn("WARNING! 'getFile' is deprecated, please use 'new RemoteFile.getFile()' instead!");
+	let file = await remoteFile(spec);
+	return file.getFile();
+}
+async function loadTextFile(path,textHandler) {
+	console.warn("WARNING! 'loadTextFile' is deprecated, please use 'new RemoteFile.getFile()' instead!");
+	let file = await remoteFile({path, textHandler});
+	return file.getFile();
+}
+async function insertCodeFromFile(spec) {
+	console.warn("WARNING! 'insertCodeFromFile' is deprecated, please use 'new RemoteFile.insertCodeFromFile()' instead!");
+	let file = await remoteFile(spec);
+	return file.insertCodeFromFile();
+}
+async function loadSnippets(spec) {
+	console.warn("WARNING! 'loadSnippets' is deprecated, please use 'new RemoteFile.loadSnippets()' instead!");
+	let file = await remoteFile(spec);
+	return file.loadSnippets();
+}
+async function loadJsonFile(path,jsonLoader) {
+	console.warn("WARNING! 'loadJsonFile' is deprecated, please use 'new RemoteFile.loadJsonFile()' instead!");
+	let handler = new JsonHandler(jsonLoader);
+	let file = await remoteFile({path, handler});
+	return file.loadJsonFile();
+}
+class JsonHandler {
+	constructor(loader) {
+		this.callbackBefore = () => {loader.preload()};
+		this.callbackAfter = () => {loader.extra()};
 	}
-	insertCodeFromFile(spec);
-}
-function loadJsonFile(path,jsonLoader) {
-	jsonLoader.loaded='';
-	getFile({"path": path, "mimeType": "application/json", "handler": function(data) {
-		jsonLoader.data=data;
-		jsonLoader.preload();
-		jsonLoader.loaded=JSON.parse(fixJson(jsonLoader.data));
-		jsonLoader.extra();
-	}});
-}
-function fixJson(data) {
-	var escapeQuotedColon=function(match, p1) {return ': "'+p1.replace(/:/g,'@colon@')+'"'};
-	return data.replace(/:\s*"([^"]*)"/g,escapeQuotedColon).replace(/:\s*'([^']*)'/g,escapeQuotedColon).replace(/(['"])?([a-z0-9A-Z_]+)(['"])?\s*:/g,'"$2": ').replace(/@colon@/g,':');
+	get loaded() {
+		console.warn("WARNING! [jsonLoader] 'loaded' is deprecated, please use 'processed' instead!");
+		return this.processed;
+	}
+	preload() {
+		console.warn("WARNING! [jsonLoader] 'preload' is deprecated, please use 'callbackBefore' instead!");
+		this.callbackBefore();
+	}
+	extra() {
+		console.warn("WARNING! [jsonLoader] 'extra' is deprecated, please use 'callbackAfter' instead!");
+		this.callbackAfter();
+	}
 }
