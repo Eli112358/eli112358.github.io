@@ -1,15 +1,12 @@
+console.warn("WARNING! 'cookie.js' is deprecated, please use localStorage instead!");
 function setCookie(cname,cvalue,exdays) {
-	var d=new Date();
-	d.setTime(d.getTime()+(exdays*24*60*60*1000));
-	document.cookie=`${cname}=${cvalue}; expires=${d.toUTCString()}`;
+	console.warn("WARNING! Cookie functions are deprecated, please use localStorage instead!");
+	localStorage[cname] = cvalue;
 }
 function getCookie(cname) {
-	var name=cname+"=";
-	if(document.cookie.indexOf(name)==-1)return "";
-	var sliced=document.cookie.substring(document.cookie.indexOf(name)+name.length);
-	return sliced.indexOf(';')>-1?sliced.substr(0,sliced.indexOf(';')):sliced;
+	console.warn("WARNING! Cookie functions are deprecated, please use localStorage instead!");
+	return localStorage[cname];
 }
 function checkCookie(cname) {
-	var cvalue=getCookie(cname);
-	if(cvalue!=""&&cvalue!=null)setCookie(cname,cvalue,365);
+	console.warn("WARNING! Cookie functions are deprecated, please use localStorage instead!");
 }
