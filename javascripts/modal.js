@@ -1,16 +1,16 @@
 class Modal {
-	names = {'hide': 'add', 'show': 'remove'};
+	names = {hide: 'add', show: 'remove'};
 	constructor(module, callback) {
 		this.module = module;
 		this.callback = callback ? callback : () => {};
 		['open', 'close'].forEach((n) => {
 			if (this.elements[n]) {
-				this.elements[n].onclick = this[n].bind(this);
+				this.elements[n].onclick = () => {this[n]()};
 			}
 		});
 		const classList = this.elements.main.classList;
 		Object.keys(this.names).forEach((key) => {
-			this[key] = classList[this.names[key]].bind(classList, 'hidden');
+			this[key] = () => {classList[this.names[key]]('hidden')};
 		});
 	}
 	get elements() {
