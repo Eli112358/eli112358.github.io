@@ -35,8 +35,11 @@ function loadFiles(urls) {
 		return promise;
 	}));
 }
+async function loadRemoteFile() {
+	return await loadFiles(['javascripts/remote-file.js']);
+}
 async function remoteFile(args) {
-	await loadFiles(['javascripts/remote-file.js']);
+	await loadRemoteFile();
 	return new RemoteFile(args);
 }
 async function getFile(spec) {
