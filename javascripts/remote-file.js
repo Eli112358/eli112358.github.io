@@ -86,6 +86,9 @@ class RemoteFile {
 			};
 		}
 	}
+	boundHandler(name) {
+		return (this.handler[name].bind(this.handler) || emptyFn);
+	}
 	loadFiles() {
 		return Promise.all(this.paths.map((path) => {
 			let file = RemoteFile.files[path.substr(path.lastIndexOf('.') + 1)];
@@ -110,14 +113,14 @@ class RemoteFile {
 				console.log(`[${now()}] Response recieved for ${this.path}`);
 				this.data = request.responseText;
 				this.handler.file = this;
-				(this.handler.callbackBefore || emptyFn).call();
+				this.boundHandler('callbackBefore').call();
 				this.lines = this.data.split('\n');
 				this.callbackBefore(this.lines);
 				this.data = this.lines.join('\n');
-				(this.handler.handle || emptyFn).call(this.data);
+				this.boundHandler('handle').call(this.data);
 				this.callbackAfter();
-				(this.handler.callbackAfter || emptyFn).call();
-				(this.handler.finished || emptyFn).call();
+				this.boundHandler('callbackAfter').call();
+				this.boundHandler('finished').call();
 				this.promise.resolve();
 			}
 		};
