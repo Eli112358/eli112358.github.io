@@ -109,6 +109,7 @@ class RemoteFile {
 			if (request.readyState == 4 && request.status == 200) {
 				console.log(`[${now()}] Response recieved for ${this.path}`);
 				this.data = request.responseText;
+				this.handler.file = this;
 				(this.handler.callbackBefore || emptyFn).call();
 				this.lines = this.data.split('\n');
 				this.callbackBefore(this.lines);
