@@ -1,4 +1,19 @@
-const emptyFn = () => {};
+function emptyFn() {}
+function fixJson(data) {
+	let escapeQuotedColon = (match, p1) => `: "${p1.replace(/:/g,'@colon@')}"`;
+	return data.replace(/:\s*"([^"]*)"/g, escapeQuotedColon).replace(/:\s*'([^']*)'/g, escapeQuotedColon).replace(/(['"])?([a-z0-9A-Z_]+)(['"])?\s*:/g, '"$2": ').replace(/@colon@/g, ':');
+}
+function getUrl(path) {
+	return `${document.location.origin}/${path}`;
+}
+function getPromise() {
+	let res, rej;
+	let promise = new Promise((resolve, reject) => {
+		[res, rej] = [resolve, reject];
+	});
+	[promise.resolve, promise.reject] = [res, rej];
+	return promise;
+}
 class RemoteFile {
 	static files = {
 		css: {
@@ -142,19 +157,4 @@ class RemoteFile {
 		};
 		return this.getFile();
 	}
-}
-function getUrl(path) {
-	return `${document.location.origin}/${path}`;
-}
-function getPromise() {
-	let res, rej;
-	let promise = new Promise((resolve, reject) => {
-		[res, rej] = [resolve, reject];
-	});
-	[promise.resolve, promise.reject] = [res, rej];
-	return promise;
-}
-function fixJson(data) {
-	let escapeQuotedColon = (match, p1) => `: "${p1.replace(/:/g,'@colon@')}"`;
-	return data.replace(/:\s*"([^"]*)"/g, escapeQuotedColon).replace(/:\s*'([^']*)'/g, escapeQuotedColon).replace(/(['"])?([a-z0-9A-Z_]+)(['"])?\s*:/g, '"$2": ').replace(/@colon@/g, ':');
 }
