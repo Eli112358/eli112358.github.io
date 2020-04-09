@@ -32,7 +32,7 @@ class RemoteFile {
 		callbackAfter = emptyFn,
 		callbackBefore = emptyFn,
 		element = null,
-		handler = {},
+		handler = new Handler(),
 		id = '',
 		mimeType = '',
 		next = null,
@@ -53,7 +53,7 @@ class RemoteFile {
 		}
 		this.element = element;
 		if (typeof handler == 'function') {
-			this.handler = {};
+			this.handler = new Handler();
 			this.handler.handle = () => {
 				handler(this.data);
 			};
@@ -164,4 +164,27 @@ class RemoteFile {
 		};
 		return this.getFile();
 	}
+}
+class Handler {
+	constructor() {}
+	extra() {
+		console.warn("WARNING! [Handler] 'extra' is deprecated, please use 'callbackAfter' instead!");
+		this.callbackAfter();
+	}
+	preload() {
+		console.warn("WARNING! [Handler] 'preload' is deprecated, please use 'callbackBefore' instead!");
+		this.callbackBefore();
+	}
+	preAppend() {
+		console.warn("WARNING! [Handler] 'preAppend' is deprecated, please use 'callbackBefore' instead!");
+		this.callbackBefore();
+	}
+	postAppend() {
+		console.warn("WARNING! [Handler] 'postAppend' is deprecated, please use 'callbackAfter' instead!");
+		this.callbackAfter();
+	}
+	callbackAfter() {}
+	callbackBefore() {}
+	finished() {}
+	handle() {}
 }
