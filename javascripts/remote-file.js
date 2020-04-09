@@ -53,6 +53,7 @@ class RemoteFile {
 		}
 		this.element = element;
 		if (typeof handler == 'function') {
+			console.warn("WARNING! 'handler' function is deprecated, please extend 'Handler' class instead!");
 			this.handler = new Handler();
 			this.handler.handle = () => {
 				handler(this.data);
@@ -67,11 +68,13 @@ class RemoteFile {
 		this.paths = paths;
 		this.processed = processed;
 		if (this.thisValue.textHandler) {
+			console.warn("WARNING! 'textHandler' is deprecated, please extend 'Handler' class instead!");
 			this.handler.handle = () => {
 				this.thisValue.textHandler(this.lines);
 			};
 		}
 		if (this.thisValue.handlerFinished) {
+			console.warn("WARNING! 'handlerFinished' is deprecated, please extend 'Handler' class instead!");
 			this.handler.finished = () => {
 				this.thisValue.handlerFinished();
 			};
@@ -85,9 +88,20 @@ class RemoteFile {
 				this.nextInstance.insertCodeFromFile();
 			};
 		}
+		[
+			'callbackAfter',
+			'callbackBefore',
+			'finished',
+			'handle'
+		].forEach((name) => {
+			if (!this.handler[name]) {
+				console.warn(`WARNING! 'handler' without '${name}' is deprecated, please extend 'Handler' class instead!`);
+				this.handler[name] = emptyFn;
+			}
+		});
 	}
 	boundHandler(name) {
-		return (this.handler[name].bind(this.handler) || emptyFn);
+		return this.handler[name].bind(this.handler);
 	}
 	loadFiles() {
 		return Promise.all(this.paths.map((path) => {
