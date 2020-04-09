@@ -53,8 +53,9 @@ class RemoteFile {
 		}
 		this.element = element;
 		if (typeof handler == 'function') {
-			this.handler = {
-				handle: () => {handler(this.data)}
+			this.handler = {};
+			this.handler.handle = () => {
+				handler(this.data);
 			};
 		} else {
 			this.handler = handler;
@@ -66,17 +67,23 @@ class RemoteFile {
 		this.paths = paths;
 		this.processed = processed;
 		if (this.thisValue.textHandler) {
-			this.handler.handle = () => {this.thisValue.textHandler(this.lines)};
+			this.handler.handle = () => {
+				this.thisValue.textHandler(this.lines);
+			};
 		}
 		if (this.thisValue.handlerFinished) {
-			this.handler.finished = () => {this.thisValue.handlerFinished()};
+			this.handler.finished = () => {
+				this.thisValue.handlerFinished();
+			};
 		}
 		if (this.id && !this.path) {
 			this.path = getUrl(`snippets/${this.id}.txt`);
 		}
 		if (this.next) {
 			this.nextInstance = new RemoteFile(this.next);
-			this.handler.callbackAfter = () => {this.nextInstance.insertCodeFromFile()};
+			this.handler.callbackAfter = () => {
+				this.nextInstance.insertCodeFromFile();
+			};
 		}
 	}
 	loadFiles() {
