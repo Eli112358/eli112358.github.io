@@ -157,6 +157,7 @@ class RemoteFile {
 		this.callbackBefore = () => {
 			try {
 				this.processed = JSON.parse(fixJson(this.data));
+				this.handler.processed = this.processed;
 			} catch (e) {
 				console.warn(e);
 				this.promise.reject();
