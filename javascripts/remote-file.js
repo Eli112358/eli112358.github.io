@@ -27,10 +27,10 @@ class RemoteFile {
 	}={}) {
 		this.thisValue = arguments[0];
 		this.callbackAfter = () => {callbackAfter(this.thisValue)};
-		this.callbackBefore = () => {callbackBefore(this.data)};
+		this.callbackBefore = () => {callbackBefore(this.lines)};
 		if (this.thisValue.preAppend) {
 			console.warn("WARNING! 'preAppend' is deprecated, please use 'callbackBefore' instead!");
-			this.callbackBefore = () => {this.thisValue.preAppend(this.thisValue)};
+			this.callbackBefore = () => {this.thisValue.preAppend(this.lines)};
 		}
 		if (this.thisValue.postAppend) {
 			console.warn("WARNING! 'postAppend' is deprecated, please use 'callbackAfter' instead!");
