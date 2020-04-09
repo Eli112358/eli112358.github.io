@@ -64,25 +64,8 @@ async function loadSnippets(spec) {
 }
 async function loadJsonFile(path,jsonLoader) {
 	console.warn("WARNING! 'loadJsonFile' is deprecated, please use 'new RemoteFile.loadJsonFile()' instead!");
+	await loadRemoteFile();
 	let handler = new JsonHandler(jsonLoader);
 	let file = await remoteFile({path, handler});
 	return file.loadJsonFile();
-}
-class JsonHandler {
-	constructor(loader) {
-		this.callbackBefore = () => {loader.preload()};
-		this.callbackAfter = () => {loader.extra()};
-	}
-	get loaded() {
-		console.warn("WARNING! [jsonLoader] 'loaded' is deprecated, please use 'processed' instead!");
-		return this.processed;
-	}
-	preload() {
-		console.warn("WARNING! [jsonLoader] 'preload' is deprecated, please use 'callbackBefore' instead!");
-		this.callbackBefore();
-	}
-	extra() {
-		console.warn("WARNING! [jsonLoader] 'extra' is deprecated, please use 'callbackAfter' instead!");
-		this.callbackAfter();
-	}
 }

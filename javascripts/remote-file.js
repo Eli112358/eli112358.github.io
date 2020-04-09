@@ -188,3 +188,32 @@ class Handler {
 	finished() {}
 	handle() {}
 }
+class JsonHandler extends Handler {
+	constructor(loader) {
+		super();
+		this.loader = loader;
+	}
+	get loaded() {
+		console.warn("WARNING! [jsonLoader] 'loaded' is deprecated, please use 'processed' instead!");
+		return this.processed;
+	}
+	set loaded(value) {
+		console.warn("WARNING! [jsonLoader] 'loaded' is deprecated, please use 'processed' instead!");
+		this.processed = value;
+	}
+	get processed() {
+		return this.processedVal;
+	}
+	set processed(value) {
+		this.processedVal = value;
+		this.loader.loaded = this.processed;
+	}
+	callbackAfter() {
+		console.warn("WARNING! [jsonLoader] 'extra' is deprecated, please use 'callbackAfter' instead!");
+		this.loader.extra();
+	}
+	callbackBefore() {
+		console.warn("WARNING! [jsonLoader] 'preload' is deprecated, please use 'callbackBefore' instead!");
+		this.loader.preload();
+	}
+}
