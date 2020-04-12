@@ -43,11 +43,14 @@ function parseBool(value) {
 	return eval(value);
 }
 function toggleButton(args) {
-	if (!args.hasOwnProperty('elements')) {
+	if (!args.element) {
 		console.warn("WARNING! [toggleButton] 'ele' is deprecated, please use 'element' instead!");
 		args.element = args.ele;
 	}
-	if(args.stored) localStorage[args.element.id] = !eval(localStorage[args.element.id]);
+	if(args.stored) {
+		let [obj, key] = args.store;
+		obj[key] = !obj[key];
+	}
 	args.element[args.property] = args.values[1-args.values.indexOf(args.element[args.property])];
 }
 
