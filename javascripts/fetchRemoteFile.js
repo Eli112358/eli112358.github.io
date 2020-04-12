@@ -20,18 +20,24 @@ const files = {
 		key: 'src'
 	}
 };
-function loadFiles(urls) {
-	return Promise.all(urls.map((url) => {
-		let file = files[url.substr(url.lastIndexOf('.') + 1)];
-		let element = document.createElement(file.tag);
-		if (file.rel) {
-			element.rel = file.rel;
-		}
-		element.type = file.type;
+function loadFiles(paths) {
+	return Promise.all(paths.map((path) => {
+		let file = files[path.substr(path.lastIndexOf('.') + 1)];
+		let url = `${document.location.origin}/${path}`;
 		let promise = getPromise();
-		element.onload = promise.resolve;
-		element[file.key] = `${document.location.origin}/${url}`;
-		document.body.appendChild(element);
+		if (document.querySelector(`${file.tag}[src="${url}"]`)) {
+			promise.resolve();
+		} else {
+			console.warn(`WARNING! Please include '${path}'!`);
+			let element = document.createElement(file.tag);
+			if (file.rel) {
+				element.rel = file.rel;
+			}
+			element.type = file.type;
+			element.onload = promise.resolve;
+			element[file.key] = url;
+			document.body.appendChild(element);
+		}
 		return promise;
 	}));
 }

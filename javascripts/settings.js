@@ -67,11 +67,7 @@ class SettingsBody extends SettingsBase {
 		super(args);
 	}
 	async init() {
-		let scriptPath = 'javascripts/header.js';
-		if (!document.querySelector(`script[src="${getUrl(scriptPath)}"]`)) {
-			console.warn(`WARNING! Please include '${scriptPath}'!`);
-		}
-		await loadFiles([scriptPath]);
+		await loadFiles(['javascripts/header.js']);
 		this.next = new Header();
 	}
 	async callbackAfter() {
@@ -94,7 +90,7 @@ class SettingsBody extends SettingsBase {
 				this.setColor(event);
 			}, this);
 		});
-		await loadFiles(['/javascripts/modal.js', '/stylesheets/modal.css']);
+		await loadFiles(['javascripts/modal.js', 'stylesheets/modal.css']);
 		this.modal = new Modal(this, this.modalCallback.bind(this));
 		this.toggle.setup = this.setupToggle.bind(this);
 		(this.args.callbackAfter || emptyFn).call();

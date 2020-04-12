@@ -103,15 +103,21 @@ class RemoteFile {
 	loadFiles() {
 		return Promise.all(this.paths.map((path) => {
 			let file = RemoteFile.files[path.substr(path.lastIndexOf('.') + 1)];
-			let element = document.createElement(file.tag);
-			if (file.rel) {
-				element.rel = file.rel;
-			}
-			element.type = file.type;
+			let url = getUrl(path);
 			let promise = getPromise();
-			element.onload = promise.resolve;
-			element[file.key] = getUrl(path);
-			document.body.appendChild(element);
+			if (document.querySelector(`${file.tag}[src="${url}"]`)) {
+				promise.resolve();
+			} else {
+				console.warn(`WARNING! Please include '${path}'!`);
+				let element = document.createElement(file.tag);
+				if (file.rel) {
+					element.rel = file.rel;
+				}
+				element.type = file.type;
+				element.onload = promise.resolve;
+				element[file.key] = url;
+				document.body.appendChild(element);
+			}
 			return promise;
 		}));
 	}
