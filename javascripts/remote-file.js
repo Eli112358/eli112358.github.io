@@ -105,19 +105,15 @@ class RemoteFile {
 			let file = RemoteFile.files[path.substr(path.lastIndexOf('.') + 1)];
 			let url = getUrl(path);
 			let promise = getPromise();
-			if (document.querySelector(`${file.tag}[src="${url}"]`)) {
-				promise.resolve();
-			} else {
-				console.warn(`WARNING! Please include '${path}'!`);
-				let element = document.createElement(file.tag);
-				if (file.rel) {
-					element.rel = file.rel;
-				}
-				element.type = file.type;
-				element.onload = promise.resolve;
-				element[file.key] = url;
-				document.body.appendChild(element);
+			console.warn(`WARNING! Please include '${path}'!`);
+			let element = document.createElement(file.tag);
+			if (file.rel) {
+				element.rel = file.rel;
 			}
+			element.type = file.type;
+			element.onload = promise.resolve;
+			element[file.key] = url;
+			document.body.appendChild(element);
 			return promise;
 		}));
 	}
