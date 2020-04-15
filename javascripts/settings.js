@@ -67,10 +67,14 @@ class SettingsBody extends SettingsBase {
 		super(args);
 	}
 	async init() {
-		await loadFiles(['javascripts/header.js']);
+		await loadFiles([
+			'javascripts/header.js',
+			'javascripts/modal.js',
+			'stylesheets/modal.css',
+		]);
 		this.next = new Header();
 	}
-	async callbackAfter() {
+	callbackAfter() {
 		this.module = new Module('settings-', ['main', 'body', 'open', 'close']);
 		this.elements = this.module.elements;
 		this.color = new Module('settings-color-', this.colors);
@@ -90,7 +94,6 @@ class SettingsBody extends SettingsBase {
 				this.setColor(event);
 			}, this);
 		});
-		await loadFiles(['javascripts/modal.js', 'stylesheets/modal.css']);
 		this.modal = new Modal(this, this.modalCallback.bind(this));
 		this.toggle.setup = this.setupToggle.bind(this);
 		(this.args.callbackAfter || emptyFn).call();
