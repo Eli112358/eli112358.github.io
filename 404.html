@@ -6,16 +6,20 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<title>Eli112358 - 404</title>
-		<script src="javascripts/fetchRemoteFile.js"></script>
+		<script src="javascripts/header.js"></script>
+		<script src="javascripts/remote-file.js"></script>
+		<script type="text/javascript">
+			async function load() {
+				await new RemoteFile(new Header()).insertCodeFromFile();
+			}
+		</script>
 	</head>
-	<body onload="addDonateMessage()">
+	<body onload="load()">
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>
 				<h2>Error 404</h2>
-				<section id="downloads">
-					<a href="https://github.com/eli112358" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-				</section>
+				<section id="header"></section>
 			</div>
 		</header>
 		<div class="container">

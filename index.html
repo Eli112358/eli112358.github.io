@@ -6,17 +6,23 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<title>Eli112358 - Repositories</title>
-		<script src="javascripts/fetchRemoteFile.js"></script>
+		<script src="javascripts/header.js"></script>
+		<script src="javascripts/remote-file.js"></script>
 		<script>
-			function loadRepos() {
-				insertCodeFromFile({'path': 'snippets/header.txt', 'id': 'header', 'func': () => {}});
-				getFile({"path": "repositories/repos.txt", "handler": function(data) {
-					var reposList=document.getElementById("repos");
-					var lines=data.split('/n');
-					for(var x=0;x<lines.length;x++) {
-						reposList.innerHTML+=`<li><a href="repo.html?repo=${lines[x]}">${lines[x]}</a></li>`;
-					}
-				}})
+			class RepoHandler {
+				constructor() {}
+				handle(data) {
+					let reposList = document.querySelector('#repos');
+					this.file.lines.forEach((line) => {
+						reposList.insertAdjacentHTML('beforeEnd', `<li><a href="repo.html?repo=${line}">${line}</a></li>`);
+					});
+				}
+			}
+			async function loadRepos() {
+				let path = 'repositories/repos.txt';
+				let handler = new RepoHandler();
+				await new RemoteFile(new Header()).insertCodeFromFile();
+				await new RemoteFile({path, handler}).getFile();
 			}
 		</script>
 	</head>
