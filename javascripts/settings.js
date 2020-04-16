@@ -69,7 +69,7 @@ class SettingsBody extends SettingsBase {
 		await loadFiles([
 			'javascripts/header.js',
 			'javascripts/modal.js',
-			'javascripts/truStorage.es6.min.js',
+			'javascripts/TruStorage.es6.min.js',
 			'stylesheets/modal.css',
 		]);
 		this.next = new Header();
