@@ -6,67 +6,30 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<title>Snake on YouTube by Eli112358</title>
-		<style>h4 {text-align: center;}</style>
-		<script src="javascripts/fetchRemoteFile.js"></script>
-		<script src="javascripts/getQueryString.js"></script>
+		<script src="javascripts/header.js"></script>
+		<script src="javascripts/remote-file.js"></script>
+		<script src="javascripts/url-parameters.js"></script>
 		<script type="text/javascript">
-			function checkURL() {
-				insertCodeFromFile({'path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {
-					insertCodeFromFile({'path': 'snippets/donate.txt', 'element': document.getElementById('donate')});
-				}});
-				var videoID=getURLParameter('v');
-				if(videoID==null) videoID="0RzTXFF0OYE";
-				var input=document.getElementById("input");
-				input.value=videoID;
-				setVideo();
-			}
+		async function load() {
+			await new RemoteFile(new Header()).insertCodeFromFile();
+		}
 		</script>
 	</head>
-	<body onload="checkURL()">
+	<body onload="load()">
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>
 				<h2>YouTube Snake Game</h2>
-				<section id="downloads">
-					<a href="https://github.com/eli112358" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-				</section>
+				<section id="header"></section>
 			</div>
 		</header>
 		<div class="container">
 			<section id="main_content">
 				<center>
 					<h3>Snake game on any YouTube video</h3>
-					<p>
-						<a href="#info">Help text below</a><br/>
-						<a id="output">Link to here</a>
-					</p>
-					<div>
-						<script type="text/javascript">
-							function setVideo() {
-								var input=document.getElementById("input");
-								var url="https://www.youtube.com/v/"+input.value+"&amp;hl=en_US&amp;fs=1";
-								document.getElementById("embed").setAttribute("src",url);
-								var output=document.getElementById("output");
-								output.setAttribute("href","snake.html?v="+input.value);
-								var container=document.getElementById("video");
-								var content=container.innerHTML;
-								container.removeChild(content);
-								container.appendChild(content);
-							}
-						</script>
-						<object id="video" width="420" height="315">
-							<embed id="embed" style="width: 640px; height: 360px;" type="application/x-shockwave-flash" allowscriptaccess="always" allowFullScreen="true" width="640" height="360">
-						</object>
-						<form onsubmit="return false">
-							<input type="text" id="input" style="width:100px"></input>
-							<button onClick="setVideo()">Load</button>
-						</form>
-					</div>
+					<p>Unfortunelty, YouTube seems to have removed the feature.</p>
+					<p>That makes this page useless,<br>therefore it will be deleted in the future.</p>
 				</center>
-				<p><h4 id="info">How to use</h4>Simply copy and paste the id of any video into the text box, press the button or hit enter, and the video should change. Click the player to start the video and then hit either left or right and then immediately either up or down; this should start the game. When you die you should be able to just hit up or down to start the game again.<p>
-				<p><h4 id="getVidId">How to get the video ID</h4>In the address bar, the id is between 'v=' and '&' if any. For example, with a url of <a target="_blank" href="http://www.youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY">youtube.com/watch?v=QW54WsjrxPY&index=1&list=RDQW54WsjrxPY</a> the id is <a href="?v=QW54WsjrxPY">QW54WsjrxPY</a>. Another example, if the url is <a target="_blank" href="http://www.youtube.com/watch?v=xKyGcAiLkDQ">youtube.com/watch?v=xKyGcAiLkDQ</a> then the id is <a href="?v=xKyGcAiLkDQ">xKyGcAiLkDQ</a>.</p>
-				<p><h4 id="Support">Issues and Suggestions</h4>If you find any issues or have suggestions, please post them <a target="_blank" href="http://github.com/eli112358/eli112358.github.io/issues">here</a>.</p>
-				<a href="#">Back to top</a>
 			</section>
 		</div>
 	</body>
