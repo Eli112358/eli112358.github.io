@@ -58,7 +58,6 @@ class SettingsNext extends SettingsBase {
 }
 class SettingsBody extends SettingsBase {
 	colors = ['red', 'green', 'blue'];
-	data = {};
 	id = 'settings-body';
 	key = 'settings';
 	mimeType = 'text/html';
@@ -70,6 +69,7 @@ class SettingsBody extends SettingsBase {
 		await loadFiles([
 			'javascripts/header.js',
 			'javascripts/modal.js',
+			'javascripts/truStorage.es6.min.js',
 			'stylesheets/modal.css',
 		]);
 		this.next = new Header();
@@ -83,11 +83,9 @@ class SettingsBody extends SettingsBase {
 				this[name] = new Module(`settings-${name}-`, this.args[name]);
 			}
 		});
-		this.load();
 		['color', 'store', 'toggle'].forEach((key) => {
 			this.forEach(key, this.load);
 		}, this);
-		this.save();
 		this.forEach('color', (element) => {
 			this.setColor(element);
 			element.addEventListener('change', (event) => {
@@ -102,7 +100,6 @@ class SettingsBody extends SettingsBase {
 		['color', 'store', 'toggle'].forEach((key) => {
 			this.forEach(key, this.save);
 		}, this);
-		this.save();
 	}
 	forEach(key, callback) {
 		if (this[key]) {
@@ -112,49 +109,30 @@ class SettingsBody extends SettingsBase {
 			}, this);
 		}
 	}
-	getData(element) {
-		let obj = this.data;
-		let path = element.id.substr(9).split('-');
-		while (path.length > 1) {
-			let key = path.splice(0, 1)[0]
-			if (!obj[key]) {
-				obj[key] = {};
-			}
-			obj = obj[key];
-		}
-		return [obj, path[0]];
 	}
-	load(element, property='value', transfer=((e,p,o,k) => {e[p] = o[k]})) {
+	load(element, property='value') {
 		if (element) {
-			let [obj, key] = this.getData(element);
-			if (localStorage[element.id]) {
-				if (!obj[key]) {
-					obj[key] = localStorage[element.id];
+			let path = element.id.replace(/-/g, '.');
+			let oldData = truStorage.getItem(element.id);
+			let data = () => truStorage.getItem(path);
+			if (oldData) {
+				if (!data()) {
+					truStorage.setItem(path, oldData);
 				}
-				localStorage.removeItem(element.id);
+				truStorage.removeItem(element.id);
 			}
-			transfer(element, property, obj, key);
-		} else if (localStorage[this.key]) {
-			this.data = JSON.parse(localStorage[this.key]);
+			element[property] = data();
 		}
 	}
-	loadToggle(element) {
-		if (element.dataset.args) {
-			let args = JSON.parse(element.dataset.args);
-			this.load(element, args.property, ((e,p,o,k) => {e[p] = args.values[o[k]|0]}))
-		}
-	}
-	save(element, property='value', transfer=((e,p,o,k) => {o[k] = e[p]})) {
+	save(element, property='value') {
 		if (element) {
-			let [obj, key] = this.getData(element);
-			transfer(element, property, obj, key);
-		} else {
-			localStorage[this.key] = JSON.stringify(this.data);
+			let path = element.id.replace(/-/g, '.');
+			let data = () => truStorage.getItem(path);
+			if (!truStorage.getItem(this.key)) {
+				truStorage.setItem(this.key, {});
+			}
+			truStorage.setItem(path, element[property]);
 		}
-	}
-	saveToggle(element) {
-		let args = JSON.parse(element.dataset.args);
-		this.save(element, args.property, ((e,p,o,k) => {o[k] = (e[p] == args.values[0])}));
 	}
 	setColor(arg) {
 		let element = arg.target ? arg.target : arg;
@@ -170,14 +148,13 @@ class SettingsBody extends SettingsBase {
 			console.warn("WARNING! [setupToggle] 'ele' is deprecated, please use 'element' instead!");
 			args.element = args.ele;
 		}
-		args.element.setAttribute('data-args', JSON.stringify(args));
-		args.store = this.getData(args.element);
 		args.element.onclick = () => {
 			toggleButton(args);
 			args.callback();
 		};
-		let [obj, key] = args.store;
-		if (args.values.indexOf(obj[key])) {
+		let path = args.element.id.replace(/-/g, '.');
+		let data = truStorage.getItem(path);
+		if (args.values.indexOf(data)) {
 			args.callback();
 		}
 	}
