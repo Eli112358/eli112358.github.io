@@ -7,13 +7,11 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<title>Zip Files</title>
 		<link rel="shortcut icon" href="images/icon.png">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<script src="javascripts/fetchRemoteFile.js"></script>
+		<script src="javascripts/header.js"></script>
+		<script src="javascripts/remote-file.js"></script>
 		<script>
-			function onload() {
-				insertCodeFromFile({'path': 'snippets/header.txt', 'element': document.getElementById('downloads'), 'func': () => {
-					insertCodeFromFile({'path': 'snippets/donate.txt', 'element': document.getElementById('donate')});
-				}});
+			async function onload() {
+				await new RemoteFile(new Header()).insertCodeFromFile();
 			}
 		</script>
 	</head>
@@ -21,21 +19,15 @@
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>
-				<h2>YouTube Snake Game</h2>
-				<section id="downloads">
-					<a href="https://github.com/eli112358" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-				</section>
+				<h2>Zip Files</h2>
+				<section id="header"></section>
 			</div>
 		</header>
 		<div class="container">
 			<section id="main_content">
 				<center>
-					<h1>Zip Files</h1>
-					<a href="index.html">Home</a> | <a href="plugins.html">Plugins</a>
-					<br/>
 					<h2>File Download Links</h2>
-					<a href="zip/D- or T-Mode Flip-Flop.zip" title="Download T-Mode Flip-Flop.zip">D- or T-Mode Flip-Flop.zip</a>
-					<p>This page is still a stub (work in progress).</p>
+					<a href="zip/D- or T-Mode Flip-Flop.zip" title="D- or T-Mode Flip-Flop.zip">D- or T-Mode Flip-Flop.zip (Minecraft)</a>
 				</center>
 			</section>
 		</div>
