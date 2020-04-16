@@ -83,23 +83,16 @@ class SettingsBody extends SettingsBase {
 				this[name] = new Module(`settings-${name}-`, this.args[name]);
 			}
 		});
-		['color', 'store', 'toggle'].forEach((key) => {
-			this.forEach(key, this.load);
-		}, this);
+		this.forAll(this.load);
 		this.forEach('color', (element) => {
 			this.setColor(element);
 			element.addEventListener('change', (event) => {
 				this.setColor(event);
 			}, this);
 		});
-		this.modal = new Modal(this, this.modalCallback.bind(this));
+		this.modal = new Modal(this, this.forAll.bind(this, this.save));
 		this.toggle.setup = this.setupToggle.bind(this);
 		(this.args.callbackAfter || emptyFn).call();
-	}
-	modalCallback() {
-		['color', 'store', 'toggle'].forEach((key) => {
-			this.forEach(key, this.save);
-		}, this);
 	}
 	forEach(key, callback) {
 		if (this[key]) {
@@ -109,6 +102,11 @@ class SettingsBody extends SettingsBase {
 			}, this);
 		}
 	}
+	forAll(callback) {
+		let boundCallback = callback.bind(this);
+		['color', 'store', 'toggle'].forEach((key) => {
+			this.forEach(key, boundCallback);
+		}, this);
 	}
 	load(element, property='value') {
 		if (element) {
