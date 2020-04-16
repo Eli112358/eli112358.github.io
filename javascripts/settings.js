@@ -114,9 +114,7 @@ class SettingsBody extends SettingsBase {
 			let oldData = truStorage.getItem(element.id);
 			let data = () => truStorage.getItem(path);
 			if (oldData) {
-				if (!data()) {
-					truStorage.setItem(path, oldData);
-				}
+				truStorage.setDefault(path, oldData);
 				truStorage.removeItem(element.id);
 			}
 			element[property] = data();
@@ -125,10 +123,6 @@ class SettingsBody extends SettingsBase {
 	save(element, property='value') {
 		if (element) {
 			let path = element.id.replace(/-/g, '.');
-			let data = () => truStorage.getItem(path);
-			if (!truStorage.getItem(this.key)) {
-				truStorage.setItem(this.key, {});
-			}
 			truStorage.setItem(path, element[property]);
 		}
 	}
