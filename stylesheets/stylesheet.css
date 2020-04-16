@@ -245,3 +245,8 @@ a {
 .cf {
 	zoom:1;
 }
+
+#header input,
+#main_content .btn {
+	height: 50px;
+}
