@@ -47,10 +47,6 @@ function toggleButton(args) {
 		console.warn("WARNING! [toggleButton] 'ele' is deprecated, please use 'element' instead!");
 		args.element = args.ele;
 	}
-	if(args.stored) {
-		let [obj, key] = args.store;
-		obj[key] = !obj[key];
-	}
 	args.element[args.property] = args.values[1-args.values.indexOf(args.element[args.property])];
 }
 

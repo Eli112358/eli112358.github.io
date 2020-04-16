@@ -179,9 +179,6 @@ class SettingsBody extends SettingsBase {
 		let [obj, key] = args.store;
 		if (args.values.indexOf(obj[key])) {
 			args.callback();
-			args.element.value = args.values[0];
-		} else {
-			obj[key] = args.values[1];
 		}
 	}
 	callbackBefore(data) {
