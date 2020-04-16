@@ -1,83 +1,78 @@
+const storagePath = 'description.location';
+const options = [
+	'indented',
+	'inline',
+	'tooltip',
+];
+let repo = urlParameters.repo;
+let file = urlParameters.file;
+let preference = options[0];
+let descriptionOnLeft = true;
+let columnTitles = ['Item', 'Description'];
+let columns = document.createElement('table');
+let elements = new Proxy({}, {
+	get: (target, id) => {
+		if (!target[id]) {
+			target[id] = document.querySelector(`#${id}`);
+		}
+		return target[id];
+	}
+});
+function preferenceIndex() {
+	return options.indexOf(preference);
+}
+class UsageHandler extends Handler {
+	constructor() {
+		super();
+	}
+	handle() {
+		Object.values(JSON.parse(this.file.data).items).forEach((item) => {
+			let element = (preferenceIndex() == 1) ? columns : elements.usage;
+			let html = `<p>${item.item}</p><p class="description indented">${item.description}</p>`;
+			if (preferenceIndex()) {
+				html =  `<div class="tooltip">${item.item}<span class="tooltiptext">${item.description}</span></div>`;
+			}
+			element.insertAdjacentHTML('beforeEnd', html);
+		});
+	}
+}
+class RepoHandler extends Handler {
+	constructor() {
+		super();
+	}
+	handle() {
+		this.file.lines.forEach((line) => {
+			elements.files.insertAdjacentHTML('beforeEnd', `<li><a href="usage.html?repo=${repo}&file=${line}">${line}</a></li>`);
+		});
+	}
+}
 async function loadRepo() {
 	await new RemoteFile(new Header()).insertCodeFromFile();
-	let repo = urlParameters.repo;
-	let file = urlParameters.file;
-	let repoName = document.querySelector('#repo-name');
-	let release = document.querySelector('#release');
 	let repoUrl = `https://github.com/Eli112358/${repo}`;
-	repoName.innerHTML = repo;
-	release.href = `${repoUrl}/releases/latest`;
+	elements.repo_name.innerHTML = repo;
+	elements.release.href = `${repoUrl}/releases/latest`;
 	document.title = `${document.title} - ${file ? file : repo}`;
 	if (file) {
-		repoName.href = `repo.html?repo=${repo}`;
-		let usage = document.querySelector('#usage');
-		let fileName = document.querySelector('#file-name');
-		let options = [
-			'indented',
-			'inline',
-			'tooltip',
-		];
-		let storagePath = 'description.location';
-		if (!truStorage.getItem(storagePath)) {
-			if (!truStorage.getItem('description')) {
-				truStorage.setItem('description', {});
-			}
-			truStorage.setItem(storagePath, options[0]);
-		}
-		let preference = truStorage.getItem(storagePath);
-		fileName.href = `${repoUrl}/blob/master/${file}`;
-		fileName.innerHTML = file;
-		let preferenceIndex = options.indexOf(preference);
-		let descriptionOnLeft = true;
-		let columnTitles = new Array();
-		columnTitles[0] = 'Item';
-		columnTitles[1] = 'Description';
+		elements.repo_name.href = `repo.html?repo=${repo}`;
+		truStorage.setDefault(storagePath, options[0]);
+		preference = truStorage.getItem(storagePath);
+		elements.file_name.href = `${repoUrl}/blob/master/${file}`;
+		elements.file_name.innerHTML = file;
 		if (descriptionOnLeft) {
 			columnTitles.reverse();
 		}
-		let columns = document.createElement('table');
-		if (preferenceIndex == 2) {
+		if (preferenceIndex() == 2) {
 			columns.id = 'columns';
 			columns.insertAdjacentHTML('beforeEnd', `<tr><th>${columnTitles[0]}</th><th>${columnTitles[1]}</th></tr>`);
-			usage.appendChild(columns);
+			elements.usage.appendChild(columns);
 		}
 		let path = `repositories/${repo}/${file}.json`;
-		let handler = {
-			handle: (data) => {
-				Object.values(JSON.parse(data).items).forEach((item) => {
-					console.debug(item);
-					switch (preferenceIndex) {
-						case 0:
-							usage.insertAdjacentHTML('beforeEnd', `<p>${item.item}</p><p class="description indented">${item.description}</p>`);
-							break;
-						case 1:
-							let tdText = [item.item, item.description];
-							if (descriptionOnLeft) {
-								tdText.reverse();
-							}
-							columns.insertAdjacentHTML('beforeEnd', `<div class="tooltip">${item.item}<span class="tooltiptext">${item.description}</span></div>`);
-							break;
-						case 2:
-							usage.insertAdjacentHTML('beforeEnd', `<div class="tooltip">${item.item}<span class="tooltiptext">${item.description}</span></div>`);
-							break;
-						default:
-							console.log(`Invalid value for ${storagePath}: ${preferenceIndex}`);
-					}
-				});
-			}
-		};
+		let handler = new UsageHandler();
 		await new RemoteFile({path, handler}).getFile();
 	} else {
-		repoName.href = repoUrl;
-		let filesList = document.querySelector('#files');
+		elements.repo_name.href = repoUrl;
 		let path = `repositories/${repo}/files.txt`;
-		let handler = {
-			handle: (data) => {
-				data.split('\n').forEach((line) => {
-					filesList.insertAdjacentHTML('beforeEnd', `<li><a href="usage.html?repo=${repo}&file=${line}">${line}</a></li>`);
-				});
-			}
-		};
+		let handler = new RepoHandler();
 		await new RemoteFile({path, handler}).getFile();
 	}
 }
