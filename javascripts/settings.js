@@ -113,7 +113,7 @@ class SettingsBody extends SettingsBase {
 			let path = element.id.replace(/-/g, '.');
 			let oldData = truStorage.getItem(element.id);
 			let data = () => truStorage.getItem(path);
-			if (oldData) {
+			if (oldData != undefined) {
 				truStorage.setDefault(path, oldData);
 				truStorage.removeItem(element.id);
 			}
@@ -146,6 +146,11 @@ class SettingsBody extends SettingsBase {
 		};
 		let path = args.element.id.replace(/-/g, '.');
 		let data = truStorage.getItem(path);
+		if (args.values.indexOf(data) == -1) {
+			data = args.values[0];
+			args.element[args.property] = data;
+			truStorage.setItem(path, data);
+		}
 		if (args.values.indexOf(data)) {
 			args.callback();
 		}
