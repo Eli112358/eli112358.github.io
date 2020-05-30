@@ -1,4 +1,4 @@
-console.warn("WARNING! 'cookie.js' is deprecated, please link 'truStorage.es6.min.js' instead!");
+console.warn('WARNING! Please use JS modules!');
 function setCookie(cname,cvalue,exdays) {
 	console.warn("WARNING! Cookie functions are deprecated, please use truStorage instead!");
 	localStorage[cname] = cvalue;

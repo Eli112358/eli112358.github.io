@@ -1,3 +1,4 @@
+console.warn('WARNING! Please use JS modules!');
 async function initSettings(args) {
 	console.warn("WARNING! 'initSettings' is deprecated, please extend class 'Settings' instead!");
 	if (!args.callbackAfter && args.postAppend) {

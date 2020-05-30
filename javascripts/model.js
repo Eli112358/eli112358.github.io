@@ -1,4 +1,4 @@
-console.warn("WARNING! 'model.js' is deprecated, please link to 'modal.js' and 'modal.css' instead!");
+console.warn('WARNING! Please use JS modules!');
 async function initModel(module, callback) {
 	console.warn("WARNING! 'initModel' is deprecated, please use 'new Modal' instead!");
 	if (!module.elements) {

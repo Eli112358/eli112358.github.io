@@ -1,3 +1,4 @@
+console.warn('WARNING! Please use JS modules!');
 function emptyFn() {}
 function fixJson(data) {
 	let escapeQuotedColon = (match, p1) => `: "${p1.replace(/:/g,'@colon@')}"`;

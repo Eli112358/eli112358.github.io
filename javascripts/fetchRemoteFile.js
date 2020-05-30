@@ -1,4 +1,4 @@
-console.warn("WARNING! 'fetchRemoteFile.js' is deprecated, please link to 'remote-file.js' instead!");
+console.warn('WARNING! Please use JS modules!');
 function getPromise() {
 	let res, rej;
 	let promise = new Promise(function(resolve, reject) {

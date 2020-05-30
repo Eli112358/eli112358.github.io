@@ -1,3 +1,4 @@
+console.warn('WARNING! Please use JS modules!');
 class Modal {
 	names = {hide: 'add', show: 'remove'};
 	constructor(module, callback) {

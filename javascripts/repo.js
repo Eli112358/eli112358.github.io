@@ -1,3 +1,4 @@
+console.warn('WARNING! Please use JS modules!');
 const storagePath = 'description.location';
 const options = [
 	'indented',

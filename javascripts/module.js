@@ -1,3 +1,4 @@
+console.warn('WARNING! Please use JS modules!');
 function getById(id) {
 	console.warn("WARNING! 'getById' is deprecated, please use 'document.querySelector' instead!");
 	return document.querySelector(`#${id}`);

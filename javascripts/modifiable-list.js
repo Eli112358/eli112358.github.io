@@ -1,3 +1,4 @@
+console.warn('WARNING! Please use JS modules!');
 function initModifiableList(spec) {
 	console.warn("WARNING! 'initModifiableList' is deprecated, please use 'new ModifiableList' instead!");
 	spec.set(new ModifiableList(spec));

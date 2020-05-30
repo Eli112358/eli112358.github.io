@@ -1,3 +1,4 @@
+console.warn('WARNING! Please use JS modules!');
 class Header {
 	id = 'header';
 	postAppend() {
