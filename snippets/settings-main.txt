@@ -1,1 +1,0 @@
-<div class="modal-content"><div class="modal-header"><span id="settings-close" class="close">&times;</span><h2>Settings</h2></div><div class="modal-body"><div id="settings-color"></div><div id="settings-body"></div></div><div class="modal-footer"><p>Changes are saved upon closing this</p></div></div>
