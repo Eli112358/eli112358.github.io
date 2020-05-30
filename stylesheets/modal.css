@@ -1,7 +1,3 @@
-.hidden {
-	display: none;
-}
-
 .modal {
 	position: fixed;
 	z-index: 1;
