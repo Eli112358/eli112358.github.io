@@ -72,7 +72,7 @@ header h2 {
 	color: #666;
 }
 
-#downloads .btn {
+#downloads .btn, #header .btn {
 	display: inline-block;
 	text-align: center;
 	margin: 0;
@@ -253,4 +253,8 @@ a {
 #header input,
 #main_content .btn {
 	height: 50px;
+}
+
+option {
+	background-color: #151515;
 }
