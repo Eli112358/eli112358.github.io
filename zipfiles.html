@@ -7,15 +7,9 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<title>Zip Files</title>
 		<link rel="shortcut icon" href="images/icon.png">
-		<script src="javascripts/header.js"></script>
-		<script src="javascripts/remote-file.js"></script>
-		<script>
-			async function onload() {
-				await new RemoteFile(new Header()).insertCodeFromFile();
-			}
-		</script>
+		<script type="module" src="javascripts/modules/header.js"></script>
 	</head>
-	<body onload="onload()">
+	<body>
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>
