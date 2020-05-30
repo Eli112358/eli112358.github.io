@@ -7,13 +7,10 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/repositories.css">
 		<title>Eli112358 - Repositories</title>
-		<script src="javascripts/header.js"></script>
-		<script src="javascripts/remote-file.js"></script>
-		<script src="javascripts/url-parameters.js"></script>
-		<script src="javascripts/TruStorage.es6.min.js"></script>
-		<script src="javascripts/repo.js"></script>
+		<script type="module" src="javascripts/modules/header.js"></script>
+		<script type="module" src="javascripts/modules/repositories.js"></script>
 	</head>
-	<body onload="loadRepo()">
+	<body>
 		<header>
 			<div class="container">
 				<h1>Eli112358</h1>
@@ -23,9 +20,13 @@
 		</header>
 		<div class="container">
 			<section id="main_content">
-				<h3><a href="index.html">Repositories</a> >> <a id="repo_name" href="404.html">Oops</a> >> <a id="file_name" href="404.html">Oops</a></h3>
+				<h3>
+					<a href="index.html">Repositories</a> >> <a id="repo_name" href="404.html">Oops</a>
+					<span id="repository_file" class="hidden"> >> <a id="file_name" href="404.html">Oops</a></span>
+				</h3>
 				<div class="latest-release"><a id="release" class="latest-release" href="https://github.com/eli112358">Latest release</a></div>
-				<h4>Usage:</h4>
+				<h4 id="list_title">Files:</h4>
+				<ul id="files"></ul>
 				<div id="usage"></div>
 			</section>
 		</div>
