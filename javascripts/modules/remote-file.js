@@ -1,5 +1,5 @@
 import { insertHTML, Position } from './insert-html.js';
-import { forEachEntry } from './object-iterator.js';
+import { IterableObject } from './iterable-object.js';
 
 const KeyType = {
 	ID: 'ids',
@@ -67,7 +67,7 @@ class RemoteFile {
 		return requests[this.paths[0]];
 	}
 	sendRequest() {
-		forEachEntry(this.requests, (_, r) => {
+		new IterableObject(this.requests).forEach(([_, r]) => {
 			r.send();
 		});
 		return Promise.all(this.promises.values());

@@ -1,7 +1,7 @@
 import { Elemental, toggleButton } from './elemental.js';
 import { fixButtons } from './header.js';
+import { IterableObject } from './iterable-object.js';
 import { Modal } from './modal.js';
-import { bindEntries, forEachEntry } from './object-iterator.js';
 import { appendCode } from './snippet.js';
 import { truStorage } from './TruStorage.es6.min.js';
 import { code } from '/snippets/settings.js';
@@ -21,11 +21,11 @@ class Settings extends Elemental {
 		'blue',
 	];
 	constructor(args = {}, moreHtml = {}) {
-		forEachEntry({...code, ...moreHtml}, (k, code) => {
+		new IterableObject({...code, ...moreHtml}).forEach(([k, code]) => {
 			appendCode({qs: `#${prefix}${k}`, code});
 		});
 		super(prefix, elementNames);
-		bindEntries(args, this);
+		new IterableObject(args).bindEntries(this);
 		[
 			'color',
 			'store',

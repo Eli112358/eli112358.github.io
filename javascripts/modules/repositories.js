@@ -1,5 +1,5 @@
 import { insertHTML } from './insert-html.js';
-import { bindEntries, forEachEntry } from './object-iterator.js';
+import { IterableObject } from './iterable-object.js';
 import { truStorage } from './TruStorage.es6.min.js';
 import { urlParameters } from './url-parameters.js';
 import { data } from './repositories.data.js';
@@ -34,7 +34,7 @@ class Repository {
 	location = Location.INDENTED;
 	constructor() {
 		let filter = Repository.names.includes.bind(Repository.names);
-		bindEntries(urlParameters, this, filter);
+		urlParameters.bindEntries(this, filter);
 	}
 	load() {
 		this.element = document.querySelector('#repos');

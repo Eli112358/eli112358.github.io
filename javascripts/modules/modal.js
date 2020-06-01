@@ -1,4 +1,4 @@
-import { forEachEntry } from './object-iterator.js';
+import { IterableObject } from './iterable-object.js';
 
 class Modal {
 	names = {
@@ -14,9 +14,9 @@ class Modal {
 			}
 		});
 		const classList = this.elements.main.classList;
-		forEachEntry(this.names, (key, _) => {
-			this[key] = () => {classList[this.names[key]]('hidden')};
-		});
+		new IterableObject(this.names).forEach(([key, value]) => {
+			this[key] = () => {classList[value]('hidden')};
+		}, this);
 	}
 	get elements() {
 		return this.elemental.elements;
