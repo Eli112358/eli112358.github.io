@@ -62,9 +62,12 @@ class Settings extends Elemental {
 			this.forEach(key, boundCallback);
 		}, this);
 	}
+	getPath(element) {
+		return element.id.replace(/-/g, '.');
+	}
 	load(element, property='value') {
 		if (element) {
-			let path = element.id.replace(/-/g, '.');
+			let path = this.getPath(element);
 			let oldData = truStorage.getItem(element.id);
 			let data = () => truStorage.getItem(path);
 			if (oldData != undefined) {
@@ -76,7 +79,7 @@ class Settings extends Elemental {
 	}
 	save(element, property='value') {
 		if (element) {
-			let path = element.id.replace(/-/g, '.');
+			let path = this.getPath(element);
 			truStorage.setItem(path, element[property]);
 		}
 	}
