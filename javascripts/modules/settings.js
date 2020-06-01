@@ -2,10 +2,11 @@ import { Elemental, toggleButton } from './elemental.js';
 import { fixButtons } from './header.js';
 import { Modal } from './modal.js';
 import { bindEntries, forEachEntry } from './object-iterator.js';
-import { appendHtml } from './snippet.js';
+import { appendCode } from './snippet.js';
 import { truStorage } from './TruStorage.es6.min.js';
-import { html } from '/snippets/settings.js';
+import { code } from '/snippets/settings.js';
 
+const prefix = 'settings-';
 const elementNames = [
 	'body',
 	'close',
@@ -20,10 +21,10 @@ class Settings extends Elemental {
 		'blue',
 	];
 	constructor(args = {}, moreHtml = {}) {
-		forEachEntry({...html, ...moreHtml}, (k, v) => {
-			appendHtml(`#settings-${k}`, v);
+		forEachEntry({...code, ...moreHtml}, (k, code) => {
+			appendCode({qs: `#${prefix}${k}`, code});
 		});
-		super('settings-', elementNames);
+		super(prefix, elementNames);
 		bindEntries(args, this);
 		[
 			'color',
@@ -31,7 +32,7 @@ class Settings extends Elemental {
 			'toggle',
 		].forEach((name) => {
 			if (this[name]) {
-				this[name] = new Elemental(`settings-${name}-`, this[name]);
+				this[name] = new Elemental(`${prefix}${name}-`, this[name]);
 			}
 		});
 		this.forAll(this.load);

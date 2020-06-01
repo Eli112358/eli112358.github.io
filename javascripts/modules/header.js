@@ -1,5 +1,7 @@
-import { appendHtml } from './snippet.js'
-import { html } from '/snippets/header.js';
+import { appendCode } from './snippet.js'
+import { code } from '/snippets/header.js';
+
+const qs = '#header';
 
 function fixButtons(selector) {
 	document.querySelectorAll(selector).forEach((e) => {
@@ -10,7 +12,7 @@ function fixButtons(selector) {
 }
 
 function loadHeader() {
-	appendHtml('#header', html);
+	appendCode({qs, code});
 	fixButtons('button, input');
 }
 

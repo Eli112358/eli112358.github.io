@@ -1,4 +1,4 @@
-const html = [
+const code = [
 	'<table>',
 		'<tbody>',
 			'<tr>',
@@ -23,5 +23,5 @@ const html = [
 ].join('');
 
 export {
-	html,
+	code,
 };

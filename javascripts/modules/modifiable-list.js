@@ -1,6 +1,6 @@
 import { Elemental } from './elemental.js';
-import { appendHtml } from './snippet.js'
-import { html } from '/snippets/modifiable-list.js';
+import { appendCode } from './snippet.js'
+import { getCode } from '/snippets/modifiable-list.js';
 
 const qs = '#modifiable-list';
 const elementNames = [
@@ -15,7 +15,8 @@ class ModifiableList extends Elemental {
 	array = [];
 	emptyCells = new Array(3);
 	constructor(prefix, id) {
-		appendHtml(qs, html.replace(/{prefix}-/g, prefix));
+		let code = getCode(prefix)
+		appendCode({qs, code});
 		super(prefix, elementNames);
 		this.id = id;
 		elementNames.forEach((name) => {

@@ -1,4 +1,4 @@
-const html = {
+const code = {
 	main: [
 		'<div class="modal-content">',
 			'<div class="modal-header">',
@@ -40,5 +40,5 @@ const html = {
 };
 
 export {
-	html,
+	code,
 };

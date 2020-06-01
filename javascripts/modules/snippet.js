@@ -1,15 +1,22 @@
-function appendHtml(qs, html) {
-	const nodes = parseHtml(html);
-	const parent = document.querySelector(qs);
-	nodes.forEach(parent.appendChild.bind(parent));
+function appendCode({
+	code,
+	element = null,
+	mimeType = 'text/html',
+	qs = '',
+}={}) {
+	if (element == null && qs) {
+		element = document.querySelector(qs);
+	}
+	let nodes = parseCode(code, mimeType);
+	nodes.forEach(element.appendChild.bind(element));
 }
 
-function parseHtml(html) {
-	const parsed = new DOMParser().parseFromString(html, 'text/html');
+function parseCode(code, mimeType = 'text/html') {
+	let parsed = new DOMParser().parseFromString(code, mimeType);
 	return Array.from(parsed.body.childNodes);
 }
 
 export {
-	appendHtml,
-	parseHtml,
+	appendCode,
+	parseCode,
 };
