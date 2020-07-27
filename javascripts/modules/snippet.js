@@ -13,7 +13,7 @@ function appendCode({
 
 function parseCode(code, mimeType = 'text/html') {
 	let parsed = new DOMParser().parseFromString(code, mimeType);
-	return Array.from(parsed.body.childNodes);
+	return Array.from(parsed.childNodes);
 }
 
 export {
