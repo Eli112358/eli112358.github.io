@@ -2,10 +2,11 @@ import { IterableObject } from './iterable-object.js';
 
 class URLParameters extends IterableObject {
 	constructor() {
-		super({});
+		let source = {};
 		window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
-			this[key] = value;
+			source[key] = value;
 		});
+		super(source);
 	}
 }
 const urlParameters = new URLParameters();
