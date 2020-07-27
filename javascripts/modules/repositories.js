@@ -74,9 +74,9 @@ class Repository {
 			}
 		}
 		if (this.data && this.element) {
-			forEachEntry(
-				this.data,
-				(key, _) => {
+			let iterable = new IterableObject(this.data);
+			iterable.forEach(
+				([key, _]) => {
 					let file = '';
 					if (this.name) {
 						file = `${this.name}&file=`;
