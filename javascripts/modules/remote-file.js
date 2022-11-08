@@ -43,13 +43,15 @@ class RemoteFile {
 				if (!(key in target)) {
 					target[key] = value;
 				}
+				return true;
 			}
 		});
 		this.ids = ids;
+		this.keyType = keyType;
 		this.paths = paths;
 		this.promises = {};
 		this.requests = {};
-		if (this.ids && this.paths.length) {
+		if (this.ids.length && this.paths.length) {
 			this.paths = this.ids.map(getSnippetPath);
 		}
 		this.keySource.forEach((key) => {
@@ -64,13 +66,13 @@ class RemoteFile {
 		return this[this.keyType];
 	}
 	get request() {
-		return requests[this.paths[0]];
+		return this.requests[this.paths[0]];
 	}
 	sendRequest() {
 		new IterableObject(this.requests).forEach(([_, r]) => {
 			r.send();
 		});
-		return Promise.all(this.promises.values());
+		return Promise.all(Object.values(this.promises));
 	}
 	loadTextFile() {
 		if (!this.handler.handle) {
@@ -89,7 +91,7 @@ class Request {
 		this.request = new XMLHttpRequest();
 		this.handler = handler;
 		this.key = key;
-		if (mimeType in this.handler) {
+		if ('mimeType' in this.handler) {
 			this.mimeType = this.handler.mimeType;
 		}
 		this.request.onreadystatechange = () => {
