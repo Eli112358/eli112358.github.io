@@ -1,8 +1,34 @@
+:root {
+	--anchor-color: #63c0f5;
+	--anchor-shadow: rgba(104, 182, 255, 0.5);
+	--bg-color-0: #151515;
+	--bg-color-1: rgba(0, 0, 0, 0.1);
+	--btn-bg-1: 40, 40, 40;
+	--btn-bg-2: 35, 35, 35;
+	--btn-bg-3: 10, 10, 10;
+	--btn-bg-4: 0, 0, 0;
+	--btn-bg-alpha: 0.3;
+	--btn-bg-hover-alpha-1: 0.6;
+	--btn-bg-hover-alpha-2: 0.8;
+	--btn-border-1: rgba(0, 0, 0, 0.7);
+	--btn-border-2: rgba(0, 0, 0, 1);
+	--btn-box-shadow: rgba(255, 255, 255, 0.05);
+	--btn-color: rgba(255, 255, 255, 0.8);
+	--btn-text-shadow: rgba(0, 0, 0, 0.75);
+	--color-0: #eaeaea;
+	--color-1: #b5e853;
+	--color-2: #666;
+	--color-6: #999;
+	--header-shadow: rgba(181, 232, 83, 0.1);
+	--pre-bg: rgba(0, 0, 0, 0.9);
+	--pre-border-color: rgba(255, 255, 255, 0.15);
+	--quote-color: #aaa;
+}
 body {
 	margin: 0;
 	padding: 0;
-	background: #151515 url("../images/bkg.png") 0 0;
-	color: #eaeaea;
+	background: var(--bg-color-0) url("../images/bkg.png") 0 0;
+	color: var(--color-0);
 	font-size: 16px;
 	line-height: 1.5;
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
@@ -39,9 +65,9 @@ li {
 */
 
 header {
-	background: rgba(0, 0, 0, 0.1);
+	background: var(--bg-color-1);
 	width: 100%;
-	border-bottom: 1px dashed #b5e853;
+	border-bottom: 1px dashed var(--color-1);
 	padding: 20px 0;
 	margin: 0 0 40px 0;
 }
@@ -52,10 +78,10 @@ header h1 {
 	margin: 0 0 0 -40px;
 	font-weight: bold;
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-	color: #b5e853;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
-				 0 0 5px rgba(181, 232, 83, 0.1),
-				 0 0 10px rgba(181, 232, 83, 0.1);
+	color: var(--color-1);
+	text-shadow: 0 1px 1px var(--bg-color-1),
+				 0 0 5px var(--header-shadow),
+				 0 0 10px var(--header-shadow);
 	letter-spacing: -1px;
 	-webkit-font-smoothing: antialiased;
 }
@@ -68,7 +94,7 @@ header h1:before {
 header h2 {
 	font-size: 18px;
 	font-weight: 300;
-	color: #666;
+	color: var(--color-2);
 }
 
 #downloads .btn, #header .btn {
@@ -91,11 +117,11 @@ section img {
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-	color: #b5e853;
+	color: var(--color-1);
 	letter-spacing: -0.03em;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
-				 0 0 5px rgba(181, 232, 83, 0.1),
-				 0 0 10px rgba(181, 232, 83, 0.1);
+	text-shadow: 0 1px 1px var(--bg-color-1),
+				 0 0 5px var(--header-shadow),
+				 0 0 10px var(--header-shadow);
 }
 
 #main_content h1 {
@@ -123,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 #main_content h6 {
 	font-size: 12px;
 	text-transform: uppercase;
-	color: #999;
+	color: var(--color-6);
 	margin: 0 0 5px 0;
 }
 
@@ -140,24 +166,24 @@ ul li:before {
 	content: ">>";
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 	font-size: 13px;
-	color: #b5e853;
+	color: var(--color-1);
 	margin-left: -37px;
 	margin-right: 21px;
 	line-height: 16px;
 }
 
 blockquote {
-	color: #aaa;
+	color: var(--quote-color);
 	padding-left: 10px;
-	border-left: 1px dotted #666;
+	border-left: 1px dotted var(--color-2);
 }
 
 pre {
-	background: rgba(0, 0, 0, 0.9);
-	border: 1px solid rgba(255, 255, 255, 0.15);
+	background: var(--pre-bg);
+	border: 1px solid var(--pre-border-color);
 	padding: 10px;
 	font-size: 14px;
-	color: #b5e853;
+	color: var(--color-1);
 	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
@@ -173,7 +199,7 @@ table {
 
 th {
 	text-align: left;
-	border-bottom: 1px dashed #b5e853;
+	border-bottom: 1px dashed var(--color-1);
 	padding: 5px 10px;
 }
 
@@ -184,8 +210,8 @@ td {
 hr {
 	height: 0;
 	border: 0;
-	border-bottom: 1px dashed #b5e853;
-	color: #b5e853;
+	border-bottom: 1px dashed var(--color-1);
+	color: var(--color-1);
 }
 
 /* Buttons
@@ -193,23 +219,34 @@ hr {
 
 .btn {
 	display: inline-block;
-	background: -webkit-linear-gradient(top, rgba(40, 40, 40, 0.3), rgba(35, 35, 35, 0.3) 50%, rgba(10, 10, 10, 0.3) 50%, rgba(0, 0, 0, 0.3));
+	background: -webkit-linear-gradient(
+			top,
+			rgba(var(--btn-bg-1), var(--btn-bg-alpha)),
+			rgba(var(--btn-bg-2), var(--btn-bg-alpha)) 50%,
+			rgba(var(--btn-bg-3), var(--btn-bg-alpha)) 50%,
+			rgba(var(--btn-bg-4), var(--btn-bg-alpha))
+	);
 	padding: 8px 18px;
 	border-radius: 50px;
-	border: 2px solid rgba(0, 0, 0, 0.7);
-	border-bottom: 2px solid rgba(0, 0, 0, 0.7);
-	border-top: 2px solid rgba(0, 0, 0, 1);
-	color: rgba(255, 255, 255, 0.8);
+	border: 2px solid var(--btn-border-1);
+	border-top-color: var(--btn-border-2);
+	color: var(--btn-color);
 	font-family: Helvetica, Arial, sans-serif;
 	font-weight: bold;
 	font-size: 13px;
 	text-decoration: none;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+	text-shadow: 0 -1px 0 var(--btn-text-shadow);
+	box-shadow: inset 0 1px 0 var(--btn-box-shadow);
 }
 
 .btn:hover {
-	background: -webkit-linear-gradient(top, rgba(40, 40, 40, 0.6), rgba(35, 35, 35, 0.6) 50%, rgba(10, 10, 10, 0.8) 50%, rgba(0, 0, 0, 0.8));
+	background: -webkit-linear-gradient(
+			top,
+			rgba(var(--btn-bg-1), var(--btn-bg-hover-alpha-1)),
+			rgba(var(--btn-bg-2), var(--btn-bg-hover-alpha-1)) 50%,
+			rgba(var(--btn-bg-3), var(--btn-bg-hover-alpha-2)) 50%,
+			rgba(var(--btn-bg-4), var(--btn-bg-hover-alpha-2))
+	);
 }
 
 .btn .icon {
@@ -230,8 +267,8 @@ hr {
 */
 
 a {
-	color: #63c0f5;
-	text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
+	color: var(--anchor-color);
+	text-shadow: 0 0 5px var(--anchor-shadow);
 }
 
 /* Clearfix */
@@ -255,5 +292,5 @@ a {
 }
 
 option {
-	background-color: #151515;
+	background-color: var(--bg-color-0);
 }
