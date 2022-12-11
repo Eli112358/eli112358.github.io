@@ -1,0 +1,8 @@
+.toggle-btn,
+.toggle-area
+{
+    display: inline;
+}
+.toggle-btn.toggle-manual:not(:has(input:checked)) ~ .toggle-area {
+    display: none;
+}
