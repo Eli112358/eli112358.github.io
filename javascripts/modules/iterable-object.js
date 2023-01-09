@@ -1,27 +1,29 @@
 class IterableObject {
 	constructor(source) {
 		this.source = source;
-		for (let [key, value] of this.entries()) {
-			Object.defineProperty(this, key, {
-				get: () => this.source[key],
-				set: (value1) => {this.source[key] = value1},
-			});
+		for (let [key, _] of this.entries()) {
+			this.defineGetterAndSetter(key);
 		}
 	}
+
+	defineGetterAndSetter(key) {
+		Object.defineProperty(this, key, {
+			get: () => this.source[key],
+			set: (value1) => this.source[key] = value1,
+		});
+	}
+
 	entries() {
 		return Object.entries(this.source);
 	}
 	bindEntries(target, filter = () => true, thisArg = window) {
 		this.entries().forEach(([k, v]) => {
-			if (filter(k)) {
-				target[k] = v;
-			}
+			if (!filter(k)) return;
+			target[k] = v;
 		}, thisArg);
 	}
 	fromEntries(iterable) {
-		iterable.forEach(([k, v]) => {
-			this.source[k] = v;
-		});
+		iterable.forEach(([k, v]) => this.source[k] = v);
 	}
 	forEach(callback, thisArg = this.source) {
 		this.entries().forEach(callback, thisArg);

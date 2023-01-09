@@ -68,7 +68,6 @@ class SettingsBody extends SettingsBase {
 	}
 	async init() {
 		await loadFiles([
-			'javascripts/header.js',
 			'javascripts/modal.js',
 			'javascripts/TruStorage.es6.min.js',
 			'stylesheets/modal.css',

@@ -3,9 +3,12 @@ import { IterableObject } from './iterable-object.js';
 class URLParameters extends IterableObject {
 	constructor() {
 		let source = {};
-		window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
+
+		function setValue(_, key, value) {
 			source[key] = value;
-		});
+		}
+
+		window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, setValue);
 		super(source);
 	}
 }
