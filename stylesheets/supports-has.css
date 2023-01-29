@@ -1,0 +1,11 @@
+#main_content {
+    display: none;
+}
+@supports selector(:has(*)) {
+    .no-support .has {
+        display: none;
+    }
+    #main_content {
+        display: block;
+    }
+}
