@@ -1,11 +1,17 @@
-#main_content {
+.requires-has {
     display: none;
 }
+.requires-has-strike {
+    text-decoration: line-through;
+}
 @supports selector(:has(*)) {
-    .no-support .has {
+    .has-error {
         display: none;
     }
-    #main_content {
+    .requires-has {
         display: block;
+    }
+    .requires-has-strike {
+        text-decoration: none;
     }
 }
