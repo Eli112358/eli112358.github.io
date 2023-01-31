@@ -12,6 +12,6 @@
         display: block;
     }
     .requires-has-strike {
-        text-decoration: none;
+        text-decoration: revert;
     }
 }
